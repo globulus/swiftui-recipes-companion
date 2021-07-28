@@ -1,0 +1,24 @@
+title: "Pager with Tab View"
+description: "Implement a Pager View using a TabView in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-paging-with-tab-view"
+updatedAt: "2021-07-28T13:00:00"
+swiftUIVersion: 2
+code: |
+@State private var selectedPage = 0
+
+  var body: some View {
+    VStack {
+      Text("Selected \(selectedPage)")
+      TabView(selection: $selectedPage) {
+        Color.red
+          .tag(0)
+        Color.blue
+          .tag(1)
+        Color.green
+          .tag(2)
+      }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+    }
+  }
+
+
