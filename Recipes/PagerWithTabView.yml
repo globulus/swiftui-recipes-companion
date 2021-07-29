@@ -4,7 +4,7 @@ description: "Implement a Pager View using a TabView in SwiftUI."
 author: "Gordan"
 url: "https://swiftuirecipes.com/blog/swiftui-paging-with-tab-view"
 updatedAt: "2021-07-28T13:00:00"
-swiftUIVersion: 2
+minSwiftUIVersion: 2
 ---
 @State private var selectedPage = 0
 
