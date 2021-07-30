@@ -17,9 +17,9 @@ extension Recipe {
         else {
             throw RecipeDecodingError.noHeader
         }
-        let headerYaml = String(src[headerRange])
+        let headerYAML = String(src[headerRange])
         do {
-            header = try YAMLDecoder().decode(RecipeHeader.self, from: headerYaml)
+            header = try YAMLDecoder().decode(RecipeHeader.self, from: headerYAML)
         } catch {
             throw RecipeDecodingError.invalidHeaderFormat(error)
         }
