@@ -1,0 +1,49 @@
+---
+title: "Expanding List"
+description: "SwiftUI expandable list."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/file-tree-with-expanding-list-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/file-tree-with-expanding-list-in-swiftui/ezgif-7-d7434b693fff.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+/*
+// Represents a simple file or a folder
+struct File: Identifiable { // identifiable ✓
+  let id = UUID()
+  let name: String
+  var children: [File]? // optional array of type File ✓
+
+  var icon: String { // makes things prettier
+    if children == nil {
+       return "doc"
+    } else if children?.isEmpty == true {
+       return "folder"
+    } else {
+       return "folder.fill"
+    }
+  }
+}
+
+let items = [
+  File(name: "Documents", children: [
+    File(name: "Work", children: [
+      File(name: "Revision 1.doc", children: nil),
+      File(name: "Revision 2.doc", children: nil),
+    ]),
+    File(name: "Sheet 1.pdf", children: nil),
+    File(name: "Sheet 2.pdf", children: nil)
+  ]),
+  File(name: "Photos", children: [
+    File(name: "Photo 1.jpg", children: nil),
+    File(name: "Photo 2.jpg", children: nil)
+  ]),
+  File(name: "Empty folder", children: []),
+  File(name: "sys.info", children: nil)
+]
+*/
+
+List(items, children: \.children) { item in
+  Image(systemName: item.icon)
+  Text(item.name)
+}

@@ -3,5 +3,5 @@ recipes:
   - ClipContentInWrappedUITextField
   - FocusChangeInTextFieldAndSecureField
   - SegmentedControl
-
+  - ExpandingList
 
