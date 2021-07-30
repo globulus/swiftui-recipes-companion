@@ -67,7 +67,7 @@ struct HomeView: View {
                     .foregroundColor(.blue)
             }
             .onTapGesture {
-                viewModel.focusRecipe = recipe
+                viewModel.focus(recipe)
             }
         }
         .background(Color.white)
@@ -90,7 +90,7 @@ struct HomeView: View {
                     Text("Description: \(header.description)")
                     Text("Author: \(header.author)")
                     if let headerURL = header.url {
-                        Button("URL: \(headerURL)") {
+                        Button(headerURL) {
                             if let url = URL(string: headerURL) {
                                 NSWorkspace.shared.open(url)
                             }
@@ -98,6 +98,15 @@ struct HomeView: View {
                     }
                     Text("Updated at: \(header.formattedUpdatedAt)")
                     Text("SwiftUI Version: \(header.versionRange)")
+                    if header.image != nil {
+                        Divider()
+                        if let image = viewModel.recipeImage {
+                            Image(nsImage: image)
+                        } else {
+                            ActivityIndicator()
+                                .onAppear(perform: viewModel.loadRecipeImage)
+                        }
+                    }
                     Divider()
                     Button("Copy code to clipboard") {
                         NSPasteboard.general.clearContents()

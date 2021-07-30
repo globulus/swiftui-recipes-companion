@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Alamofire
 
 class HomeViewModel: ObservableObject {
     private let recipeRepo: RecipeRepo
@@ -19,6 +20,7 @@ class HomeViewModel: ObservableObject {
     @Published var loadingMessage = ""
     @Published var recipes = [Recipe]()
     @Published var focusRecipe: Recipe? = nil
+    @Published var recipeImage: NSImage? = nil
     @Published var saveMessage = ""
     @Published var errorMessage = ""
     
@@ -65,6 +67,34 @@ class HomeViewModel: ObservableObject {
     func saveRecipes() {
         userDefaultsManager.recipes = recipes
         saveMessage = "Recipes saved successfully! You can now use the Editor Extension!"
+    }
+    
+    func focus(_ recipe: Recipe) {
+        recipeImage = nil
+        focusRecipe = recipe
+    }
+    
+    func loadRecipeImage() {
+        guard let recipe = focusRecipe,
+              let url = recipe.header.image
+        else {
+            return
+        }
+        AF.request(url)
+            .publishData()
+            .tryMap { response -> Data in
+                if let data = response.data {
+                    return data
+                } else {
+                    throw NetworkingError.serverError(response.error?.localizedDescription ?? "")
+                }
+            }
+            .sinkJust { [self] data in
+                recipeImage = NSImage(data: data)
+            } onError: { [self] error in
+                errorMessage = error.localizedDescription
+            }
+            .store(in: &subs)
     }
     
     var codeHTMLWithHighlight: String? {
