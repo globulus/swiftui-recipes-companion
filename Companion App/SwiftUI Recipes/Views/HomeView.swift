@@ -12,26 +12,32 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            headerView
-                .padding(.bottom, 15)
-            recipeList
-            saveView
-            detailsView
-            if !viewModel.errorMessage.isEmpty {
-                Text(viewModel.errorMessage)
-                    .foregroundColor(.red)
+            NavigationView {
+                VStack {
+                    headerView
+                    recipeList
+                    saveView
+                    if !viewModel.errorMessage.isEmpty {
+                        Text(viewModel.errorMessage)
+                            .foregroundColor(.red)
+                    }
+                }
+                .frame(minWidth: 300)
+                .onAppear(perform: viewModel.loadRecipes)
+                
+                detailsView
             }
+            infoView
         }
-        .padding()
-        .onAppear(perform: viewModel.loadRecipes)
     }
     
     private var headerView: some View {
         HStack {
-            Text("Available recipes: (click any to see details)")
+            Text("Available recipes:")
             Spacer()
             refreshView
         }
+        .padding()
     }
     
     private var refreshView: some View {
@@ -40,56 +46,31 @@ struct HomeView: View {
                 ActivityIndicator()
                 Text(viewModel.loadingMessage)
             } else {
-                Button("Refresh") {
-                    viewModel.loadRecipes()
-                }
+                Button("Refresh", action: viewModel.loadRecipes)
             }
         }
     }
     
     private var recipeList: some View {
-        GeometryReader { geo in
-            VStack {
-                listViewHeader(geo)
-                recipeListView(geo)
-            }
-        }
-    }
-    
-    private func listViewHeader(_ geo: GeometryProxy) -> some View {
-        HStack {
-            Text("Title")
-                .frame(width: geo.size.width * 0.4)
-            Text("Updated at")
-                .frame(width: geo.size.width * 0.25)
-            Text("SwiftUI Version")
-                .frame(width: geo.size.width * 0.15)
-            Text("Include")
-                .frame(width: geo.size.width * 0.2)
-        }
-    }
-    
-    private func recipeListView(_ geo: GeometryProxy) -> some View {
         List(viewModel.recipes, id: \.self) { recipe in
-            Button(action: {
-                viewModel.focusRecipe = recipe
-            }) {
-                HStack {
-                    Text(recipe.header.title)
-                        .frame(width: geo.size.width * 0.4, alignment: .leading)
-                    Text(recipe.header.formattedUpdatedAt)
-                        .frame(width: geo.size.width * 0.25, alignment: .leading)
-                    Text(recipe.header.versionRange)
-                        .frame(width: geo.size.width * 0.15, alignment: .leading)
-                    Button(action: {
+            HStack {
+                Text((recipe.header.isActive == false) ? "❌" : "✓")
+                    .font(.system(size: 24))
+                    .frame(width: 30)
+                    .onTapGesture {
                         viewModel.toggleIsActive(for: recipe)
-                    }) {
-                        Text((recipe.header.isActive == false) ? "Excluded" : "Included")
                     }
-                    .frame(width: geo.size.width * 0.2, alignment: .leading)
-                }
+                Text(recipe.header.title)
+                Spacer()
+                Text("›")
+                    .font(.system(size: 32))
+                    .foregroundColor(.blue)
+            }
+            .onTapGesture {
+                viewModel.focusRecipe = recipe
             }
         }
+        .background(Color.white)
     }
     
     private var saveView: some View {
@@ -98,32 +79,52 @@ struct HomeView: View {
             Spacer()
             Button("Save", action: viewModel.saveRecipes)
         }
+        .padding()
     }
     
     private var detailsView: some View {
         ScrollView {
-            HStack(alignment: .top) {
+            VStack(alignment: .leading) {
                 if let header = viewModel.focusRecipe?.header {
-                    VStack(alignment: .leading) {
-                        Text("Title: \(header.title)")
-                        Text("Description: \(header.description)")
-                        Text("Author: \(header.author)")
-                        Button("URL: \(header.url)") {
-                            if let url = URL(string: header.url) {
-                                NSWorkspace.shared.open(url)
-                            }
+                    Text("Title: \(header.title)")
+                    Text("Description: \(header.description)")
+                    Text("Author: \(header.author)")
+                    Button("URL: \(header.url)") {
+                        if let url = URL(string: header.url) {
+                            NSWorkspace.shared.open(url)
                         }
-                        Text("Updated at: \(header.formattedUpdatedAt)")
-                        Text("SwiftUI Version: \(header.versionRange)")
+                    }
+                    Text("Updated at: \(header.formattedUpdatedAt)")
+                    Text("SwiftUI Version: \(header.versionRange)")
+                    Divider()
+                    Button("Copy code to clipboard") {
+                        NSPasteboard.general.clearContents()
+                        NSPasteboard.general.setString(viewModel.focusRecipe!.code, forType: .string)
                     }
                 }
-                Text(viewModel.focusRecipe?.code ?? "")
+                Text(viewModel.codeHTMLWithHighlight ?? "")
                     .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity)
             }
             .padding()
+            .frame(maxWidth: .infinity)
         }
         .background(Color.white)
+    }
+    
+    private var infoView: some View {
+        HStack {
+            Image("info")
+                .resizable()
+                .frame(width: 15, height: 15)
+            Text("The app and XCode extension are a part of the SwiftUI Recipes Companion project.")
+            Button("Learn more & contribute!") {
+                if let url = URL(string: "https://github.com/globulus/swiftui-recipes-companion") {
+                    NSWorkspace.shared.open(url)
+                }
+            }
+            Spacer()
+        }
+        .padding(5)
     }
 }
 

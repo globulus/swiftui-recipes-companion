@@ -44,6 +44,8 @@
 		6A5E34A426B1B2B300EABC58 /* RecipeDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E34A326B1B2B300EABC58 /* RecipeDecoder.swift */; };
 		6A5E34A626B1B67C00EABC58 /* RecipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E34A526B1B67C00EABC58 /* RecipeManager.swift */; };
 		6A5E34AA26B2F66800EABC58 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E34A926B2F66800EABC58 /* Extensions.swift */; };
+		6A5E34AC26B3E6B300EABC58 /* HighlightTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 6A5E34AB26B3E6B300EABC58 /* HighlightTemplate.html */; };
+		6A5E34AE26B3E87400EABC58 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E34AD26B3E87400EABC58 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,8 @@
 		6A5E34A326B1B2B300EABC58 /* RecipeDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDecoder.swift; sourceTree = "<group>"; };
 		6A5E34A526B1B67C00EABC58 /* RecipeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeManager.swift; sourceTree = "<group>"; };
 		6A5E34A926B2F66800EABC58 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6A5E34AB26B3E6B300EABC58 /* HighlightTemplate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = HighlightTemplate.html; sourceTree = "<group>"; };
+		6A5E34AD26B3E87400EABC58 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 				6A5E343026B025EB00EABC58 /* AppDelegate.swift */,
 				6A5E343226B025EB00EABC58 /* ContentView.swift */,
 				6A5E343426B025EE00EABC58 /* Assets.xcassets */,
+				6A5E34AB26B3E6B300EABC58 /* HighlightTemplate.html */,
 				6A5E343926B025EE00EABC58 /* Main.storyboard */,
 				6A5E343C26B025EE00EABC58 /* Info.plist */,
 				6A5E343D26B025EE00EABC58 /* SwiftUI_Recipes.entitlements */,
@@ -283,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				6A5E349026B14E0700EABC58 /* ActivityIndicator.swift */,
+				6A5E34AD26B3E87400EABC58 /* WebView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A5E343B26B025EE00EABC58 /* Main.storyboard in Resources */,
+				6A5E34AC26B3E6B300EABC58 /* HighlightTemplate.html in Resources */,
 				6A5E343826B025EE00EABC58 /* Preview Assets.xcassets in Resources */,
 				6A5E343526B025EE00EABC58 /* Assets.xcassets in Resources */,
 			);
@@ -404,6 +411,7 @@
 				6A5E34A026B1A9E800EABC58 /* RecipeFileList.swift in Sources */,
 				6A5E348926B1485100EABC58 /* Recipe.swift in Sources */,
 				6A5E349126B14E0700EABC58 /* ActivityIndicator.swift in Sources */,
+				6A5E34AE26B3E87400EABC58 /* WebView.swift in Sources */,
 				6A5E349726B15A3700EABC58 /* DateUtil.swift in Sources */,
 				6A5E347726B13C4F00EABC58 /* RecipeService.swift in Sources */,
 				6A5E348B26B1495300EABC58 /* RecipeRepo.swift in Sources */,
@@ -625,6 +633,7 @@
 		6A5E345826B0261100EABC58 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Recipes/Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -646,6 +655,7 @@
 		6A5E345926B0261100EABC58 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Recipes/Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

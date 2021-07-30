@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Float {
     var removingZeroDecimal: String {

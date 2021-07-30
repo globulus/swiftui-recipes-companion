@@ -44,7 +44,7 @@ class HomeViewModel: ObservableObject {
         pub.result
             .sinkJust { [self] response in
                 focusRecipe = nil
-                recipes = response
+                recipes = response.sorted(by: { $0.header.title < $1.header.title })
                 saveMessage = "Please review the recipe list, exclude those you don't need in your Editor Extension, and then press 'Save'."
             } onError: { [self] error in
                 errorMessage = error.localizedDescription
@@ -65,5 +65,16 @@ class HomeViewModel: ObservableObject {
     func saveRecipes() {
         userDefaultsManager.recipes = recipes
         saveMessage = "Recipes saved successfully! You can now use the Editor Extension!"
+    }
+    
+    var codeHTMLWithHighlight: String? {
+        guard let recipe = focusRecipe
+//              let path = Bundle.main.path(forResource: "HighlightTemplate", ofType: "html"),
+//              let data = FileManager.default.contents(atPath: path),
+//              let content = String(data: data, encoding: .utf8)
+        else {
+            return nil
+        }
+        return recipe.code // content.replacingOccurrences(of: "RECIPE_CODE", with: recipe.code)
     }
 }
