@@ -61,6 +61,7 @@ struct HomeView: View {
                         viewModel.toggleIsActive(for: recipe)
                     }
                 Text(recipe.header.title)
+                    .lineLimit(nil)
                 Spacer()
                 Text("›")
                     .font(.system(size: 32))

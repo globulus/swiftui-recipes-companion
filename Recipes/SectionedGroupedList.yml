@@ -1,0 +1,34 @@
+---
+title: "Sectioned / Grouped List"
+description: "Display a grouped list in SwiftUI. A grouped list contains sections, comprised of zero or more rows, plus an optional header and footer."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/grouped-list-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/grouped-list-in-swiftui/grouped.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+/*
+struct Item: Hashable {
+  let header: String
+  let footer: String
+  let rows: [String]
+}
+
+// ... and some sample data
+
+let items = [
+    Item(header: "Header 1", footer: "Footer 1", rows: ["A", "B", "C"]),
+    Item(header: "Header 2", footer: "Footer 2", rows: ["C", "D"]),
+    Item(header: "Header 3", footer: "Footer 3", rows: ["E"])
+]
+*/
+
+List {
+  ForEach(items, id: \.self) { item in
+    Section(header: Text(item.header), footer: Text(item.footer)) {
+      ForEach(item.rows, id: \.self) { row in
+        Text(row)
+      }
+    }
+  }
+}.listStyle(GroupedListStyle())

@@ -10,6 +10,14 @@ Insert their code straight into yours via the **Editor** menu:
 
 IMAGE
 
+## Installation
+
+DOwnload...
+
+Run the **companion app first**. It'll fetch the list of recipes from Github and allow you to preview their content/code and exclude those you don't want in your Editor menu. After you're done, be sure to press the **Save** button.
+
+Then, just run Xcode and find it in **Editor -> Recipes -> ...**. PRessing any recipe will insert its code at your cursor. The special **Run Companion** recipe will start the companion app again.
+
 ## Contributing Recipes
 
 All the recipes are open source and live in the [Recipes folder in Git](https://github.com/globulus/swiftui-recipes-companion/tree/main/Recipes). **Any contributions are more than welcome!**
@@ -29,3 +37,7 @@ maxSwiftUIVersion: Optional, if the recipe got deprecated in a newer SwiftUI ver
 ---
 RECIPE CODE GOES HERE
 ```
+
+## Blog
+
+Check out [SwiftUIRecipes.com](https://swiftuirecipes.com) for in-depth explanations of recipes.
