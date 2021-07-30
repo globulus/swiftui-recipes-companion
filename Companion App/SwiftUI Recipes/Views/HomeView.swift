@@ -89,9 +89,11 @@ struct HomeView: View {
                     Text("Title: \(header.title)")
                     Text("Description: \(header.description)")
                     Text("Author: \(header.author)")
-                    Button("URL: \(header.url)") {
-                        if let url = URL(string: header.url) {
-                            NSWorkspace.shared.open(url)
+                    if let headerURL = header.url {
+                        Button("URL: \(headerURL)") {
+                            if let url = URL(string: headerURL) {
+                                NSWorkspace.shared.open(url)
+                            }
                         }
                     }
                     Text("Updated at: \(header.formattedUpdatedAt)")

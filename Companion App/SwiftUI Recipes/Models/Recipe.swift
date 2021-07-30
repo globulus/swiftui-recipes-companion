@@ -11,7 +11,7 @@ struct RecipeHeader: Codable, Hashable {
     let title: String
     let description: String
     let author: String
-    let url: String
+    let url: String?
     let updatedAt: String
     let minSwiftUIVersion: Float
     let maxSwiftUIVersion: Float?

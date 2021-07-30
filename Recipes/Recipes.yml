@@ -1,3 +1,7 @@
 recipes:
   - PagerWithTabView
+  - ClipContentInWrappedUITextField
+  - FocusChangeInTextFieldAndSecureField
+  - SegmentedControl
+
 

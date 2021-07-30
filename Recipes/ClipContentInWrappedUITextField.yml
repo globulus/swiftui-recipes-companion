@@ -1,0 +1,15 @@
+---
+title: "Clip content in wrapped UITextField"
+description: "Prevent the content size from affecting the text field size when wrapping a UITextField in UIViewRepresentable."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/clip-content-in-wrapped-uitextfield"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct MyTextField: UIViewRepresentable {
+  func makeUIView(context: UIViewRepresentableContext<MyTextField>) -> UITextField {
+    let tf = UITextField(frame: .zero)
+    tf.setContentCompressionResistancePriority(.defaultLow, for: .horizontal) // THIS IS THE KEY
+  }
+}
+
