@@ -12,11 +12,12 @@ Then, simply insert their code straight into yours via the **Editor** menu:
 
 ## Installation
 
-DOwnload...
+**Installation instructions coming soon, after the app's been approved on the App Store.**
 
-Run the **companion app first**. It'll fetch the list of recipes from Github and allow you to preview their content/code and exclude those you don't want in your Editor menu. After you're done, be sure to press the **Save** button.
-
-Then, just run Xcode and find it in **Editor -> Recipes -> ...**. Pressing any recipe command will insert its code at your cursor. There's also the special **Run Companion** command that will start the companion app again.
+* Download the app from the App Store. 
+* Run the **companion app first** (search **Applications -> SwiftUI Recipes**). It'll fetch the list of recipes from Github and allow you to preview their content/code and exclude those you don't want in your Editor menu. After you're done, be sure to press the **Save** button.
+* Go to **System Preferences -> Extensions -> Xcode Source Editor -> Select `SwiftUIRecipes`**.
+* Run Xcode and find it in **Editor -> Recipes -> ...**. Pressing any recipe command will insert its code at your cursor. There's also the special **Run Companion** command that will start the companion app again.
 
 ## Contributing Recipes
 
