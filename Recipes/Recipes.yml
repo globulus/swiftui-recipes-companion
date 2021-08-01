@@ -9,6 +9,6 @@ recipes:
   - ToggleSwitch
   - StyledText
   - ResizeableImage
-  - KeyWindowTopViewCOntroller
+  - KeyWindowTopViewController
   - ScrollingScrollViewProgramatically
   - CustomButtonStyle
