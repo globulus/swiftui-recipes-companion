@@ -40,9 +40,10 @@ class RecipeServiceImpl: RecipeService {
                         .handleEvents(receiveRequest: { _ in
                             progressSubject.send(.fetching(index: idx + 1, total: files.count))
                         })
-                        .tryMap { data in
-                            try Recipe(from: String(data: data, encoding: .utf8))
+                        .map { data in
+                            try? Recipe(from: String(data: data, encoding: .utf8))
                         }
+                        .compactMap { $0 }
                         .eraseToAnyPublisher()
                 })
             }

@@ -4,11 +4,11 @@ Companion app and XCode extension for adding SwiftUI recipes to your code.
 
 Choose from a rich selection of SwiftUI recipes, that range from simple tasks to entire custom components:
 
-IMAGE
+![Companion App](https://github.com/globulus/swiftui-recipes-companion/blob/main/Images/companionApp.png?raw=true)
 
-Insert their code straight into yours via the **Editor** menu:
+Then, simply insert their code straight into yours via the **Editor** menu:
 
-IMAGE
+![Companion App](https://github.com/globulus/swiftui-recipes-companion/blob/main/Images/editorExtension.png?raw=true)
 
 ## Installation
 
@@ -16,11 +16,11 @@ DOwnload...
 
 Run the **companion app first**. It'll fetch the list of recipes from Github and allow you to preview their content/code and exclude those you don't want in your Editor menu. After you're done, be sure to press the **Save** button.
 
-Then, just run Xcode and find it in **Editor -> Recipes -> ...**. PRessing any recipe will insert its code at your cursor. The special **Run Companion** recipe will start the companion app again.
+Then, just run Xcode and find it in **Editor -> Recipes -> ...**. Pressing any recipe command will insert its code at your cursor. There's also the special **Run Companion** command that will start the companion app again.
 
 ## Contributing Recipes
 
-All the recipes are open source and live in the [Recipes folder in Git](https://github.com/globulus/swiftui-recipes-companion/tree/main/Recipes). **Any contributions are more than welcome!**
+All the recipes are open source and live in the [Recipes folder in the Git](https://github.com/globulus/swiftui-recipes-companion/tree/main/Recipes). **Any contributions are more than welcome!**
 
 To contribute a recipe, simply **create a PR with a new recipe file**. A recipe file is a *yml* with the following structure:
 
@@ -40,4 +40,4 @@ RECIPE CODE GOES HERE
 
 ## Blog
 
-Check out [SwiftUIRecipes.com](https://swiftuirecipes.com) for in-depth explanations of recipes.
+Check out [SwiftUIRecipes.com](https://swiftuirecipes.com) for in-depth explanations of common, yet puzzling SwiftUI tasks.
