@@ -1,0 +1,11 @@
+---
+title: "Resizeable Image"
+description: "How to resize an image in SwiftUI."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+Image("imageName")
+    .resizable()
+    .aspectRatio(contentMode: .fill)
+    .frame(width: 50, height: 100)

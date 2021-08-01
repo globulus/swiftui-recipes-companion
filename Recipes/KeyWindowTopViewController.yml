@@ -1,0 +1,27 @@
+---
+title: "Key Window / Root / Top View Controller"
+description: "Getting the key window, top or root View Controller, in a scene-based SwiftUI app."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/getting-key-window-and-top-root-view-controller-in-swiftui"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+extension UIApplication {
+  var currentKeyWindow: UIWindow? {
+    UIApplication.shared.connectedScenes
+      .filter { $0.activationState == .foregroundActive }
+      .map { $0 as? UIWindowScene }
+      .compactMap { $0 }
+      .first?.windows
+      .filter { $0.isKeyWindow }
+      .first
+  }
+
+  var rootViewController: UIViewController? {
+    currentKeyWindow?.rootViewController
+  }
+
+  var visibleViewController: UIViewController? {
+    currentKeyWindow?.visibleViewController
+  }
+}

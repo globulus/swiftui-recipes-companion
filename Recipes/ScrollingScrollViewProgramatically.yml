@@ -1,0 +1,22 @@
+---
+title: "Scrolling ScrollView Programatically"
+description: "Scroll a SwiftUI ScrollView programatically."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/scrolling-scrollview-programatically"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+let range = 1..<30
+var body: some View {
+  ScrollView {
+    ScrollViewReader { proxy in
+      ForEach(1..<30) { value in
+        Text("\(value)")
+          .id(value) // the ID can be any hashable
+      }
+      Button("Scroll to random") {
+        proxy.scrollTo(Int.random(in: range))
+       }
+    }
+  }
+}

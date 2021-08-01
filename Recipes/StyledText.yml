@@ -1,0 +1,12 @@
+---
+title: "Styled Text"
+description: "Basic SwiftUI static text."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+Text("Hello World")
+    .font(.system(size: 12))
+    .fontWeight(.semibold)
+    .foregroundColor(.blue)
+    .lineLimit(nil)

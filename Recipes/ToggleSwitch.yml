@@ -1,0 +1,11 @@
+---
+title: "Toggle / Switch"
+description: "Basic switch / toggle control in SwiftUI."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/develop/Recipes/SegmentedControl.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+@State private var toggleState = false
+
+Toggle("Toggle", isOn: $toggleState)
