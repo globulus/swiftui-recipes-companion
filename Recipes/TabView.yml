@@ -1,0 +1,30 @@
+---
+title: "Tab View"
+description: "Basic bottom tabs in SwiftUI."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/develop/Recipes/TabView.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+@State private var selectedTab = 0
+
+TabView(selection: $selectedTab) {
+    Text("WiFi content")
+        .tabItem({
+            Image(systemName: "wifi")
+            Text("WiFi")
+        })
+        .tag(0)
+    Text("Network content")
+        .tabItem({
+            Image(systemName: "network")
+            Text("Network")
+        })
+        .tag(1)
+    Text("Settings content")
+        .tabItem({
+            Image(systemName: "gear")
+            Text("Settings")
+        })
+        .tag(2)
+}

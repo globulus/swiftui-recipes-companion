@@ -1,0 +1,43 @@
+---
+title: "Form"
+description: "Sample SwiftUI form."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/styling-swiftui-form"
+image: "https://swiftuirecipes.com/user/pages/01.blog/styling-swiftui-form/no_styling.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct FormTest: View {
+  @State private var textFieldSelection = ""
+  @State private var pickerSelection = "One"
+  @State private var isToggleOn = false
+  @State private var datePickerSelection = Date()
+
+  var body: some View {     
+    NavigationView {
+      Form {
+        TextField("TextField", text: $textFieldSelection)
+        Text("Some text")
+        Button("Button") { }
+        Section(header: Text("Header"), footer: Text("Footer")) {
+          Text("Section text")
+        }
+        Picker(selection: $pickerSelection, label: Text("Picker")) {
+          ForEach(["One", "Two", "Three"], id: \.self) {
+            Text($0).tag($0)
+          }
+        }
+        Toggle(isOn: $isToggleOn) {
+          Text("Toggle")
+        }
+        NavigationLink("Navigation Link", destination: Text("Destination"))
+        Picker(selection: $pickerSelection, label: Text("Picker")) {
+          ForEach(["One", "Two", "Three"], id: \.self) {
+            Text($0).tag($0)
+          }
+        }.pickerStyle(SegmentedPickerStyle())
+        DatePicker("Date picker", selection: $datePickerSelection)
+      }.navigationBarTitle("Form Styling", displayMode: .inline)
+    }
+  }
+}

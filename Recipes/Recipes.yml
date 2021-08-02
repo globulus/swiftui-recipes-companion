@@ -12,3 +12,7 @@ recipes:
   - KeyWindowTopViewController
   - ScrollingScrollViewProgramatically
   - CustomButtonStyle
+  - StyledNavigationBar
+  - TabView
+  - Form
+  - DatePicker

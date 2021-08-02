@@ -1,0 +1,65 @@
+---
+title: "Styled Navigation Bar"
+description: "Style a navigation bar in SwiftUI - changing its background color, text color, as well as styling the status bar."
+author: "Gordan"
+url: "https://github.com/globulus/swiftui-navigation-bar-styling"
+image: "https://swiftuirecipes.com/user/pages/01.blog/navigation-bar-styling-in-swiftui/Screenshot%202020-11-03%20at%2009.26.43.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct NavigationBarModifier: ViewModifier {
+  var backgroundColor: UIColor
+  var textColor: UIColor
+
+  init(backgroundColor: UIColor, textColor: UIColor) {
+    self.backgroundColor = backgroundColor
+    self.textColor = textColor
+    let coloredAppearance = UINavigationBarAppearance()
+    coloredAppearance.configureWithTransparentBackground()
+    coloredAppearance.backgroundColor = .clear
+    coloredAppearance.titleTextAttributes = [.foregroundColor: textColor]
+    coloredAppearance.largeTitleTextAttributes = [.foregroundColor: textColor]
+
+    UINavigationBar.appearance().standardAppearance = coloredAppearance
+    UINavigationBar.appearance().compactAppearance = coloredAppearance
+    UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    UINavigationBar.appearance().tintColor = textColor
+  }
+
+  func body(content: Content) -> some View {
+    ZStack{
+       content
+        VStack {
+          GeometryReader { geometry in
+             Color(self.backgroundColor)
+                .frame(height: geometry.safeAreaInsets.top)
+                .edgesIgnoringSafeArea(.top)
+              Spacer()
+          }
+        }
+     }
+  }
+}
+
+extension View {
+  func navigationBarColor(_ backgroundColor: UIColor, textColor: UIColor) -> some View {
+    self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, textColor: textColor))
+  }
+}
+
+class HostingController<Content> : UIHostingController<Content> where Content : View {
+  @objc override dynamic open var preferredStatusBarStyle: UIStatusBarStyle {
+     return .lightContent
+  }
+}
+
+// Add to SceneDelegate.swift
+
+// ...
+    if let windowScene = scene as? UIWindowScene {
+      let window = UIWindow(windowScene: windowScene)
+      window.rootViewController = HostingController(rootView: contentView) // NOTICE THE CHANGE
+      self.window = window
+      window.makeKeyAndVisible()
+    }
+//...
