@@ -1,0 +1,17 @@
+---
+title: "Basic Navigation"
+description: "A simple navigation view with a few navigation links."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/BasicNavigation.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+NavigationView {
+    VStack {
+        NavigationLink("First link", destination: Text("Destination View"))
+        NavigationLink(destination: Text("Second destination")) {
+            Image(systemName: "link.circle")
+                .frame(width: 30, height: 30)
+        }
+    }.navigationBarTitle("Navigation Testing", displayMode: .inline)
+}

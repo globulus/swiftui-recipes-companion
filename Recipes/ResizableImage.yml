@@ -7,5 +7,5 @@ minSwiftUIVersion: 1
 ---
 Image("imageName")
     .resizable()
-    .aspectRatio(contentMode: .fill)
+    .aspectRatio(contentMode: .fit)
     .frame(width: 50, height: 100)

@@ -1,0 +1,19 @@
+---
+title: "Trigger Navigation Link"
+description: "Programatically navigate to another view."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+@State private var triggerNavigation = false
+
+NavigationView {
+    VStack {
+        Button("Trigger navigation") {
+            triggerNavigation = true
+        }
+        NavigationLink(destination: Text("Destination View"), isActive: $triggerNavigation) {
+            EmptyView()
+        }
+    }
+}

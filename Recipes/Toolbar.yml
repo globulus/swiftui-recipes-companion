@@ -1,0 +1,23 @@
+---
+title: "Toolbar"
+description: "Top / bottom toolbar in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-toolbar-placement-cheatsheet#"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-toolbar-placement-cheatsheet/Screenshot%202021-04-19%20at%2009.13.46.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+NavigationView {
+  Text("Hello, World!")
+    .padding()
+    .navigationTitle("Toolbar Tester")
+    .blueNavigation
+    .toolbar {
+      ToolbarItem(placement: .navigation) {
+        Button("Navigation") { }
+      }
+      ToolbarItem(placement: .bottomBar) {
+        Button("BottomBar") { }
+      }
+    }
+}

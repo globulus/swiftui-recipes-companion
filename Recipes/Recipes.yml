@@ -16,3 +16,7 @@ recipes:
   - TabView
   - Form
   - DatePicker
+  - Toolbar
+  - BasicNavigation
+  - NavigationBarButtons
+  - TriggerNavigationLink
