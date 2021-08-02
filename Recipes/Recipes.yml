@@ -20,3 +20,5 @@ recipes:
   - BasicNavigation
   - NavigationBarButtons
   - TriggerNavigationLink
+  - EquallySpacedElementsInHStack
+  - EvenlySizedElements

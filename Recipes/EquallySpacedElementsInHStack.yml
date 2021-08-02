@@ -1,0 +1,15 @@
+---
+title: "Equally Spaced Elements in HStack"
+description: "How to equally space elements in a HStack."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/EquallySpacedElementsInHStack.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+HStack {
+  Text("First")
+  Spacer()
+  Text("Second")
+  Spacer()
+  Text("Third")
+}.padding()

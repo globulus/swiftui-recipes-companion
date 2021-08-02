@@ -1,0 +1,22 @@
+---
+title: "Evenly Sized Elements"
+description: "How to make elements (children) of a container be evenly sized, shown on an HStack."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/EvenlySizedElements.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+let count = 4
+let padding: CGFloat = 4
+let spacing: CGFloat = 6
+
+GeometryReader { proxy in
+    let width = (proxy.size.width - padding * 2 - spacing * CGFloat(count - 1)) / CGFloat(count)
+    HStack(spacing: spacing) {
+        ForEach(0..<count) { i in
+            Text("\(i)")
+                .frame(width: width, alignment: .center)
+                .overlay(Rectangle().strokeBorder(Color.black))
+        }
+    }.padding(padding)
+}
