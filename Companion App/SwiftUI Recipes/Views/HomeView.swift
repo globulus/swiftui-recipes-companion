@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject private(set) var viewModel: HomeViewModel
     
     var body: some View {
@@ -71,7 +72,7 @@ struct HomeView: View {
                 viewModel.focus(recipe)
             }
         }
-        .background(Color.white)
+        .background((colorScheme == .dark) ? Color.black : Color.white)
     }
     
     private var saveView: some View {
@@ -120,7 +121,7 @@ struct HomeView: View {
             .padding()
             .frame(maxWidth: .infinity)
         }
-        .background(Color.white)
+        .background((colorScheme == .dark) ? Color.black : Color.white)
     }
     
     private var infoView: some View {
