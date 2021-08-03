@@ -28,7 +28,8 @@ class HomeViewModel: ObservableObject {
     var recipes: [Recipe] {
         filterText.isEmpty
             ? allRecipes
-            : allRecipes.filter { $0.header.title.contains(filterText) || $0.header.description.contains(filterText) }
+            : allRecipes.filter { $0.header.title.localizedCaseInsensitiveContains(filterText)
+                || $0.header.description.localizedCaseInsensitiveContains(filterText) }
     }
     
     init(recipeRepo: RecipeRepo,

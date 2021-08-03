@@ -33,7 +33,7 @@ struct SearchBar: View {
             .cornerRadius(8)
             .overlay(HStack { // Add the search icon to the left
                 Image("magnifying-glass")
-                    .frame(width: 16, height: 16)
+                    .frame(width: 12, height: 12)
                     .padding(.leading, 8)
                 Spacer()
             }).padding(.horizontal, 10)
