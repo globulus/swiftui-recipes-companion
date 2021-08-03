@@ -1,0 +1,25 @@
+---
+title: "Action Sheet"
+description: "SwiftUI ActionSheet template."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/ActionSheet.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+@State private var showSheet = false
+
+Button("Show Action Sheet") {
+    showSheet = true
+}.actionSheet(isPresented: $showSheet) {
+    ActionSheet(title: Text("Title"),
+                message: Text("This is an action sheet"),
+                buttons: [
+                    .default(Text("OK"), action: {
+                        
+                    }),
+                    .destructive(Text("Delete"), action: {
+                        
+                    }),
+                    .cancel(Text("Cancel"))
+                ])
+}

@@ -1,0 +1,20 @@
+---
+title: "Slider"
+description: "Basic Slider in SwiftUI."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/Slider.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+@State private var value = 0.0
+
+Slider(value: $value,
+        in: 1...10,
+        step: 2,
+        onEditingChanged: { editingStarted in
+    print("Editing started: \(editingStarted)")
+},
+        minimumValueLabel: Text("Min"),
+        maximumValueLabel: Text("Max")) {
+    Text("Label")
+}

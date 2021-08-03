@@ -24,3 +24,5 @@ recipes:
   - EvenlySizedElements
   - DetectDarkMode
   - DismissKeyboard
+  - Slider
+  - ActionSheet
