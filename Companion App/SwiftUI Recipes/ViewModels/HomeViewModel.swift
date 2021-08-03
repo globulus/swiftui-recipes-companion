@@ -15,14 +15,21 @@ class HomeViewModel: ObservableObject {
     private var userDefaultsManager: UserDefaultsManager
     
     private var subs = Set<AnyCancellable>()
+    private var allRecipes = [Recipe]()
     
     @Published var isLoading = false
     @Published var loadingMessage = ""
-    @Published var recipes = [Recipe]()
+    @Published var filterText = ""
     @Published var focusRecipe: Recipe? = nil
     @Published var recipeImage: NSImage? = nil
     @Published var saveMessage = ""
     @Published var errorMessage = ""
+    
+    var recipes: [Recipe] {
+        filterText.isEmpty
+            ? allRecipes
+            : allRecipes.filter { $0.header.title.contains(filterText) || $0.header.description.contains(filterText) }
+    }
     
     init(recipeRepo: RecipeRepo,
          userDefaultsManager: UserDefaultsManager) {
@@ -46,7 +53,7 @@ class HomeViewModel: ObservableObject {
         pub.result
             .sinkJust { [self] response in
                 focusRecipe = nil
-                recipes = response.sorted(by: { $0.header.title < $1.header.title })
+                allRecipes = response.sorted(by: { $0.header.title < $1.header.title })
                 saveMessage = "Please review the recipe list, exclude those you don't need in your Editor Extension, and then press 'Save'."
             } onError: { [self] error in
                 errorMessage = error.localizedDescription
@@ -60,7 +67,7 @@ class HomeViewModel: ObservableObject {
         if let index = recipes.firstIndex(of: recipe) {
             var mutableRecipe = recipe
             mutableRecipe.header.isActive = (recipe.header.isActive == nil) ? false : !recipe.header.isActive!
-            recipes[index] = mutableRecipe
+            allRecipes[index] = mutableRecipe
         }
     }
     

@@ -17,6 +17,7 @@ struct HomeView: View {
                 VStack {
                     headerView
                     recipeList
+                    SearchBar(isShowing: .constant(true), text: $viewModel.filterText)
                     saveView
                     if !viewModel.errorMessage.isEmpty {
                         Text(viewModel.errorMessage)

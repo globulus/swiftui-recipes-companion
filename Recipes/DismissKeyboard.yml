@@ -1,0 +1,8 @@
+---
+title: "Dismiss Keyboard"
+description: "Programatically dismiss keyboard in SwiftUI."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

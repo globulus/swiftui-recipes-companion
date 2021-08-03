@@ -46,6 +46,7 @@
 		6A5E34AA26B2F66800EABC58 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E34A926B2F66800EABC58 /* Extensions.swift */; };
 		6A5E34AC26B3E6B300EABC58 /* HighlightTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 6A5E34AB26B3E6B300EABC58 /* HighlightTemplate.html */; };
 		6A5E34AE26B3E87400EABC58 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E34AD26B3E87400EABC58 /* WebView.swift */; };
+		6A5E34B026B91CC300EABC58 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E34AF26B91CC300EABC58 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		6A5E34A926B2F66800EABC58 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6A5E34AB26B3E6B300EABC58 /* HighlightTemplate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = HighlightTemplate.html; sourceTree = "<group>"; };
 		6A5E34AD26B3E87400EABC58 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		6A5E34AF26B91CC300EABC58 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 			children = (
 				6A5E349026B14E0700EABC58 /* ActivityIndicator.swift */,
 				6A5E34AD26B3E87400EABC58 /* WebView.swift */,
+				6A5E34AF26B91CC300EABC58 /* SearchBar.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				6A5E34AE26B3E87400EABC58 /* WebView.swift in Sources */,
 				6A5E349726B15A3700EABC58 /* DateUtil.swift in Sources */,
 				6A5E347726B13C4F00EABC58 /* RecipeService.swift in Sources */,
+				6A5E34B026B91CC300EABC58 /* SearchBar.swift in Sources */,
 				6A5E348B26B1495300EABC58 /* RecipeRepo.swift in Sources */,
 				6A5E347A26B13D4A00EABC58 /* Networking.swift in Sources */,
 				6A5E349926B15A6F00EABC58 /* JSONUtil.swift in Sources */,
@@ -589,7 +593,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SwiftUI Recipes/SwiftUI_Recipes.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI Recipes/Preview Content\"";
 				DEVELOPMENT_TEAM = N43KYHR3HM;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -615,7 +619,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SwiftUI Recipes/SwiftUI_Recipes.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI Recipes/Preview Content\"";
 				DEVELOPMENT_TEAM = N43KYHR3HM;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -639,7 +643,7 @@
 				CODE_SIGN_ENTITLEMENTS = Recipes/Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N43KYHR3HM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Recipes/Info.plist;
@@ -662,7 +666,7 @@
 				CODE_SIGN_ENTITLEMENTS = Recipes/Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N43KYHR3HM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Recipes/Info.plist;
