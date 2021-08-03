@@ -26,3 +26,5 @@ recipes:
   - DismissKeyboard
   - Slider
   - ActionSheet
+  - AlertDialog
+  - AlertWithTextField
