@@ -1,0 +1,59 @@
+---
+title: "Custom Shape"
+description: "Custom shape (i.e, shape with custom path), shown on an example drawing an n-pointed star."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/CustomShape.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct Star: Shape {
+  let points: Int
+  
+  func path(in rect: CGRect) -> Path {
+    var path = Path()
+    let starExtrusion = CGFloat(30)
+    let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
+
+    var angle = -CGFloat(.pi / 2.0)
+    let angleIncrement = CGFloat(.pi * 2 / Double(points))
+    let radius = rect.width / 2.0
+
+    var firstPoint = true
+
+    for _ in 1...points {
+      let point = pointFrom(angle: angle, radius: radius, offset: center)
+      let nextPoint = pointFrom(angle: angle + angleIncrement, radius: radius, offset: center)
+      let midPoint = pointFrom(angle: angle + angleIncrement / 2.0, radius: starExtrusion, offset: center)
+
+      if firstPoint {
+          firstPoint = false
+          path.move(to: point)
+      }
+
+      path.addLine(to: midPoint)
+      path.addLine(to: nextPoint)
+
+      angle += angleIncrement
+    }
+    
+    path.closeSubpath()
+    return path
+  }
+  
+  private func pointFrom(angle: CGFloat, radius: CGFloat, offset: CGPoint) -> CGPoint {
+    CGPoint(x: radius * cos(angle) + offset.x, y: radius * sin(angle) + offset.y)
+  }
+}
+
+/*
+// Sample Usage
+Star(points: 5)
+    .fill(Color.red)
+    .frame(width: 200, height: 200)
+Star(points: 8)
+    .fill(Color.green)
+    .frame(width: 200, height: 200)
+Star(points: 17)
+    .fill(Color.blue)
+    .frame(width: 200, height: 200)
+*/
