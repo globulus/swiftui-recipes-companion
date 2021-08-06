@@ -10,6 +10,8 @@ Then, simply insert their code straight into yours via the **Editor** menu:
 
 ![Companion App](https://github.com/globulus/swiftui-recipes-companion/blob/main/Images/editorExtension.png?raw=true)
 
+**Be sure to check out the [online version](https://swiftuirecipes.com/companion) as well!**
+
 ## Installation
 
 * [Download and install the app from the App Store](https://apps.apple.com/us/app/swiftui-recipes/id1579235956). 
