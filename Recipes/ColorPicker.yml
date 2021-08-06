@@ -1,0 +1,11 @@
+---
+title: "Color Picker"
+description: "Color Picker in SwiftUI."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/ColorPicker.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+@State private var selectedColor = Color.red
+
+ColorPicker("Color Picker", selection: $selectedColor)

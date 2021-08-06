@@ -1,0 +1,17 @@
+---
+title: "List of Hashable"
+description: "SwiftUI List with Hashable items."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/ListOfHashable.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+List(1...100, id: \.self) { item in
+  HStack {
+    Text("\(item)")
+    Spacer()
+    Image(systemName: "chevron.right")
+      .foregroundColor(.blue)
+      .frame(width: 32, height: 32)
+  }
+}

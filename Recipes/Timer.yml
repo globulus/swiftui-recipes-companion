@@ -1,0 +1,20 @@
+---
+title: "Timer"
+description: "Countdown timer in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/timers-and-countdowns-in-swiftui"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+import Combine
+
+@State private var elapsedTime = 0
+private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
+var body: some View {
+    VStack {
+        Text("Elapsed time: \(elapsedTime) s")
+    }.onReceive(timer) { _ in
+        self.elapsedTime += 1
+    }
+}

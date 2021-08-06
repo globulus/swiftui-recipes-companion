@@ -8,7 +8,7 @@ recipes:
   - SendMail
   - ToggleSwitch
   - StyledText
-  - ResizeableImage
+  - ResizableImage
   - KeyWindowTopViewController
   - ScrollingScrollViewProgramatically
   - CustomButtonStyle
@@ -30,3 +30,7 @@ recipes:
   - AlertWithTextField
   - SampleUIViewRepresentable
   - CustomShape
+  - Timer
+  - ColorPicker
+  - ListOfHashable
+  - RemoveListSeparatorsSwiftUI1
