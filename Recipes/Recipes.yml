@@ -1,4 +1,40 @@
 recipes:
+  - PagerWithTabView
+  - ClipContentInWrappedUITextField
+  - FocusChangeInTextFieldAndSecureField
+  - SegmentedControl
+  - ExpandingList
+  - SectionedGroupedList
+  - SendMail
+  - ToggleSwitch
+  - StyledText
+  - ResizableImage
+  - KeyWindowTopViewController
+  - ScrollingScrollViewProgramatically
+  - CustomButtonStyle
+  - StyledNavigationBar
+  - TabView
+  - Form
+  - DatePicker
+  - Toolbar
+  - BasicNavigation
+  - NavigationBarButtons
+  - TriggerNavigationLink
+  - EquallySpacedElementsInHStack
+  - EvenlySizedElements
+  - DetectDarkMode
+  - DismissKeyboard
+  - Slider
+  - ActionSheet
+  - AlertDialog
+  - AlertWithTextField
+  - SampleUIViewRepresentable
+  - CustomShape
+  - Timer
+  - ColorPicker
+  - ListOfHashable
+  - RemoveListSeparatorsSwiftUI1
+recipeMetadata:
   - PagerWithTabView:
     minSwiftUIVersion: 2
   - ClipContentInWrappedUITextField
