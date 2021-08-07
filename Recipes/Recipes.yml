@@ -34,7 +34,7 @@ recipes:
   - ColorPicker
   - ListOfHashable
   - RemoveListSeparatorsSwiftUI1
-recipeMetadata:
+recipesV2:
   - PagerWithTabView:
     minSwiftUIVersion: 2
   - ClipContentInWrappedUITextField
