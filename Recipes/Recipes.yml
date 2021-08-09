@@ -34,4 +34,5 @@ recipes:
   - ColorPicker
   - ListOfHashable
   - RemoveListSeparators@1
+  - RemoveListSeparators@3
   - ShapeStrokeAndFill

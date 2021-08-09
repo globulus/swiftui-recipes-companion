@@ -1,0 +1,16 @@
+---
+title: "Remove List Separators (3)"
+description: "Remove List Separators, working for SwiftUI 3 and above."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+List(1...100, id: \.self) { item in
+  HStack {
+    Text("\(item)")
+    Spacer()
+    Image(systemName: "chevron.right")
+      .foregroundColor(.blue)
+      .frame(width: 32, height: 32)
+  }.listRowSeparator(.hidden)
+}
