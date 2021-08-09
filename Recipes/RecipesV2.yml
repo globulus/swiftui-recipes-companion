@@ -67,5 +67,8 @@ recipes:
       minSwiftUIVersion: 2
   - ListOfHashable:
       minSwiftUIVersion: 1
-  - RemoveListSeparatorsSwiftUI1:
+  - RemoveListSeparators@1:
+      minSwiftUIVersion: 1
+      maxSwiftUIVersion: 1
+  - ShapeStrokeAndFill:
       minSwiftUIVersion: 1

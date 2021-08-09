@@ -1,0 +1,53 @@
+---
+title: "Shape Stroke and Fill"
+description: "Stroke and fill a Shape at the same time."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/stroke-and-fill-a-shape-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/stroke-and-fill-a-shape-in-swiftui/Screenshot%202021-07-21%20at%2021.02.45.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+Circle()
+  .stroke(Color.red, lineWidth: 7)
+  .background(Circle().fill(Color.green))
+
+// Helpful extension
+
+/*
+protocol ParameterlessInitable {
+  init()
+}
+
+// Make existing Shapes conform to the new protocol.
+extension Circle: ParameterlessInitable { }
+extension Rectangle: ParameterlessInitable { }
+extension Capsule: ParameterlessInitable {
+  init() {
+    self.init(style: .circular)
+  }
+}
+
+extension Shape where Self: ParameterlessInitable {
+  func stroke<StrokeStyle, FillStyle>(
+      _ strokeStyle: StrokeStyle,
+      lineWidth: CGFloat = 1,
+      fill fillStyle: FillStyle
+  ) -> some View where StrokeStyle: ShapeStyle, FillStyle: ShapeStyle {
+    Self()
+      .stroke(strokeStyle, lineWidth: lineWidth)
+      .background(Self().fill(fillStyle))
+  }
+}
+
+// Sample usage
+
+Circle()
+  .stroke(Color.red, lineWidth: 7, fill: Color.green)
+  .frame(width: 60, height: 60)
+Capsule()
+  .stroke(Color.blue, lineWidth: 5, fill: Color.orange)
+  .frame(width: 100, height: 60)
+Rectangle()
+  .stroke(Color.black, lineWidth: 10, fill: Color.white)
+  .frame(width: 100, height: 60)
+*/

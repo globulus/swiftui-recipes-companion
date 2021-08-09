@@ -33,4 +33,5 @@ recipes:
   - Timer
   - ColorPicker
   - ListOfHashable
-  - RemoveListSeparatorsSwiftUI1
+  - RemoveListSeparators@1
+  - ShapeStrokeAndFill
