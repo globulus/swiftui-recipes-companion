@@ -72,6 +72,5 @@ recipes:
       maxSwiftUIVersion: 1
   - RemoveListSeparators@3:
       minSwiftUIVersion: 3
-      maxSwiftUIVersion: 1
   - ShapeStrokeAndFill:
       minSwiftUIVersion: 1

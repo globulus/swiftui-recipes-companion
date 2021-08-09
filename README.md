@@ -44,7 +44,7 @@ To contribute a recipe, simply **create a PR with a new recipe file**. A recipe 
 
 ```yaml
 ---
-title: "Title of the recipe, as it'll appear in the App/Extension"
+title: "Title of the recipe, as it'll appear in the App/Extension. Can only contain slash / and parentheses () as special characters."
 description: "Give a short description of the recipe here."
 author: "Your name or email address."
 url: "Optional, URL to more details on the subject."
