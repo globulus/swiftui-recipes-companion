@@ -1,0 +1,50 @@
+---
+title: "Shake Gesture"
+description: "Shake gesture detection in SwiftUI"
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/shake-gesture-in-swiftui"
+image: "https://github.com/globulus/swiftui-shake-gesture/blob/main/Images/preview.gif?raw=true"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+public extension Notification.Name {
+  static let shakeEnded = Notification.Name("ShakeEnded")
+}
+
+public extension UIWindow {
+  override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+    if motion == .motionShake {
+      NotificationCenter.default.post(name: .shakeEnded, object: nil)
+    }
+    super.motionEnded(motion, with: event)
+  }
+}
+
+struct ShakeDetector: ViewModifier {
+  let onShake: () -> Void
+
+  func body(content: Content) -> some View {
+    content
+      .onAppear() // this has to be here because of a SwiftUI bug
+      .onReceive(NotificationCenter.default.publisher(for: .shakeEnded)) { _ in
+        onShake()
+      }
+  }
+}
+
+extension View {
+  func onShake(perform action: @escaping () -> Void) -> some View {
+    self.modifier(ShakeDetector(onShake: action))
+  }
+}
+
+struct ShakeTest: View {
+  @State private var text = "Shake me!"
+
+  var body: some View {
+    Text(text)
+      .onShake { // ADD THIS
+        text = "Shaken at \(Date())"
+      }
+  }
+}

@@ -27,6 +27,7 @@ Then, simply insert their code straight into yours via the **Editor** menu:
  * Click the recipe to see its details, image and code.
  * Checkmark on left-hand side means that the recipe will show up in your XCode Extension. If you click it, it turns into a red X and then the recipe is excluded.
  * Click **Save** to store the recipes locally to that the XCode extension can use them.
+ * Regularly check for new recipes, as new ones are added on a daily basis.
 
 **Source Editor Extension**:
 

@@ -36,3 +36,6 @@ recipes:
   - RemoveListSeparators@1
   - RemoveListSeparators@3
   - ShapeStrokeAndFill
+  - SizeOfViewAtRuntime
+  - ShakeGesture
+  - InfiniteScrollList

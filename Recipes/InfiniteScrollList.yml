@@ -1,0 +1,43 @@
+---
+title: "Infinite Scroll List"
+description: "Infinite scrolling list in SwiftUI. The result code is a single view, that can be used just like any other List. It renders data from a collection via a ViewBuilder and triggers loading when the list is scrolled to the bottom."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/infinite-scroll-list-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/infinite-scroll-list-in-swiftui/ezgif-7-f83ec7550e4e.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct InfiniteList<Data, Content>: View
+    where Data : RandomAccessCollection, Data.Element : Hashable, Content : View  { 
+  @Binding var data: Data
+  @Binding var isLoading: Bool
+  let loadMore: () -> Void
+  let content: (Data.Element) -> Content
+
+  init(data: Binding<Data>,
+       isLoading: Binding<Bool>,
+       loadMore: @escaping () -> Void,
+       @ViewBuilder content: @escaping (Data.Element) -> Content) {
+    _data = data
+    _isLoading = isLoading
+    self.loadMore = loadMore
+    self.content = content
+  }
+
+  var body: some View {
+    List {
+       ForEach(data, id: \.self) { item in
+         content(item)
+           .onAppear {
+              if item == data.last {
+                loadMore()
+              }
+           }
+       }
+       if isLoading {
+         ProgressView()
+           .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
+       }
+    }.onAppear(perform: loadMore)
+  }
+}
