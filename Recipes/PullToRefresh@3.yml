@@ -1,0 +1,19 @@
+---
+title: "Pull to Refresh (3)"
+description: "Pull to Refresh on a SwiftUI List."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/pull-to-refresh-with-swiftui-scrollview"
+image: "https://swiftuirecipes.com/user/pages/01.blog/pull-to-refresh-with-swiftui-scrollview/ezgif-4-bf1673b185d4.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+// Pull to Refresh is natively supported in SwiftUI 3. The (1-2) version is still arguably more powerful.
+@State private var now = Date() 
+
+List(1..<20) { row in
+    Text("\(Calendar.current.date(byAdding: .hour, value: $0, to: now)!)")
+        .padding(.bottom, 10)
+}
+.refreshable {
+    now = Date()
+}

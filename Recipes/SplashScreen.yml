@@ -1,0 +1,67 @@
+---
+title: "Splash Screen"
+description: "Add a Splash Screen to your SwiftUI app! You can specify a custom view that will show when your app starts and then dismiss itself automatically after a certain period of time."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-splash-screen"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-splash-screen/ezgif-2-d3d0362f280a.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+private let defaultTimeout: TimeInterval = 2.5
+
+struct SplashView<SplashContent: View>: ViewModifier {
+  private let timeout: TimeInterval
+  private let splashContent: () -> SplashContent
+
+  @State private var isActive = true
+
+  init(timeout: TimeInterval = defaultTimeout,
+       @ViewBuilder splashContent: @escaping () -> SplashContent) {
+    self.timeout = timeout
+    self.splashContent = splashContent
+  }
+
+  func body(content: Content) -> some View {
+    if isActive {
+       splashContent()
+        .onAppear {
+           DispatchQueue.main.asyncAfter(deadline: .now() + timeout) {
+             withAnimation {
+               self.isActive = false
+             }
+           }
+         }
+    } else {
+      content
+    }
+  }
+}
+
+extension View {
+  func splashView<SplashContent: View>(
+    timeout: TimeInterval = defaultTimeout,
+    @ViewBuilder splashContent: @escaping () -> SplashContent
+  ) -> some View {
+    self.modifier(SplashView(timeout: timeout, splashContent: splashContent))
+  }
+}
+
+/*
+// Sample usage
+
+struct HomeView: View {
+  var body: some View {
+    List(1..<6) { index in
+      Text("Item \(index)")
+    }.splashView {
+      ZStack {
+        Color.blue
+        Text("SwiftUIRecipes is awesome!")
+          .fontWeight(.bold)
+          .font(.system(size: 24))
+          .foregroundColor(.white)
+      }
+    }
+  }
+}
+*/

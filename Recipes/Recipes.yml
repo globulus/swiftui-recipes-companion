@@ -41,3 +41,9 @@ recipes:
   - InfiniteScrollList
   - TextWithAttributedString@1-2
   - TextWithAttributedString@3
+  - InfiniteScrollList
+  - FlowLayout
+  - SideMenu
+  - SplashScreen
+  - PullToRefresh@1-2
+  - PullToRefresh@3

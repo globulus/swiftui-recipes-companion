@@ -2,7 +2,7 @@
 title: "Text With Attributed String (3)"
 description: "Format content of a SwiftUI Text with HTML via AttributedString."
 author: "Gordan"
-image: "http:s//swiftuirecipes.com/user/pages/01.blog/swiftui-text-with-html-via-nsattributedstring/Screenshot%202021-05-26%20at%2014.24.29.png"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-text-with-html-via-nsattributedstring/Screenshot%202021-05-26%20at%2014.24.29.png"
 updatedAt: "2021-07-28T13:00:00"
 minSwiftUIVersion: 3
 ---

@@ -85,3 +85,16 @@ recipes:
       maxSwiftUIVersion: 2
   - TextWithAttributedString@3:
       minSwiftUIVersion: 3
+  - InfiniteScrollList:
+      minSwiftUIVersion: 1
+  - FlowLayout:
+      minSwiftUIVersion: 1
+  - SideMenu:
+      minSwiftUIVersion: 1
+  - SplashScreen:
+      minSwiftUIVersion: 1
+  - PullToRefresh@1-2:
+      minSwiftUIVersion: 1
+      maxSwiftUIVersion: 2
+  - PullToRefresh@3:
+      minSwiftUIVersion: 3
