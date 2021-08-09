@@ -1,0 +1,21 @@
+---
+title: "Text With Attributed String (3)"
+description: "Format content of a SwiftUI Text with HTML via AttributedString."
+author: "Gordan"
+image: "http:s//swiftuirecipes.com/user/pages/01.blog/swiftui-text-with-html-via-nsattributedstring/Screenshot%202021-05-26%20at%2014.24.29.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+// AttributedString is natively supported in SwiftUI 3
+let html = """
+<html>
+<body>
+<b>Hello</b>, <i>World</i>
+</body>
+</html>
+"""
+let attributedString = try? AttributedString(data: Data(html.utf8), options: [.documentType: .html], documentAttributes: nil)
+
+var body: some View {
+    Text(attributedString)
+}

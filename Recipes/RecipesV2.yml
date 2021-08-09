@@ -80,3 +80,8 @@ recipes:
       minSwiftUIVersion: 1
   - InfiniteScrollList:
       minSwiftUIVersion: 1
+  - TextWithAttributedString@1-2:
+      minSwiftUIVersion: 1
+      maxSwiftUIVersion: 2
+  - TextWithAttributedString@3:
+      minSwiftUIVersion: 3

@@ -39,3 +39,5 @@ recipes:
   - SizeOfViewAtRuntime
   - ShakeGesture
   - InfiniteScrollList
+  - TextWithAttributedString@1-2
+  - TextWithAttributedString@3
