@@ -58,3 +58,4 @@ recipes:
   - SpinnerActivityIndicator@1
   - SpinnerActivityIndicator@2+
   - NavigationBarButtonImage
+  - CustomToggleCheckbox

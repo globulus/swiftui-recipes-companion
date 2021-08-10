@@ -122,3 +122,5 @@ recipes:
       minSwiftUIVersion: 2
   - NavigationBarButtonImage:
       minSwiftUIVersion: 1
+  - CustomToggleCheckbox:
+      minSwiftUIVersion: 1

@@ -1,0 +1,49 @@
+---
+title: "Custom Toggle / Checkbox"
+description: "Implement a custom Toggle via ToggleStyle. The particular ToggleStyle you'll implement will make a Toggle look like a checkbox. "
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/custom-toggle-checkbox-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/custom-toggle-checkbox-in-swiftui/Screenshot%202021-08-10%20at%2017.01.08.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct CheckboxToggleStyle: ToggleStyle {
+  let style: Style // custom param
+
+  func makeBody(configuration: Configuration) -> some View {
+    Button(action: {
+      configuration.isOn.toggle() // toggle the state binding
+    }, label: {
+      HStack {
+        Image(systemName: configuration.isOn ? "checkmark.\(style.sfSymbolName).fill" : style.sfSymbolName)
+          .imageScale(.large)
+        configuration.label
+      }
+    }).buttonStyle(PlainButtonStyle()) // remove any implicit styling from the button
+  }
+
+  enum Style {
+    case square, circle
+
+    var sfSymbolName: String {
+      switch self {
+      case .square:
+        return "square"
+      case .circle:
+        return "circle"
+      }
+    }
+  }
+}
+
+/*
+// Sample usage
+
+Toggle("Checkbox 1", isOn: $isOn1)
+  .toggleStyle(CheckboxToggleStyle(style: .square))
+  .foregroundColor(.blue)
+
+Toggle("Checkbox 2", isOn: $isOn2)
+  .toggleStyle(CheckboxToggleStyle(style: .circle))
+  .foregroundColor(.red)
+*/
