@@ -96,3 +96,8 @@ recipes:
       maxSwiftUIVersion: 2
   - PullToRefresh@3:
       minSwiftUIVersion: 3
+  - ListSeparatorColor@1-2:
+      minSwiftUIVersion: 1
+      maxSwiftUIVersion: 2
+  - ListSeparatorColor@3:
+      minSwiftUIVersion: 3

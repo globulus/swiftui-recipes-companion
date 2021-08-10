@@ -1,0 +1,65 @@
+---
+title: "List Separator Color (1-2)"
+description: "Implement a custom separator/divider in any SwiftUI list feeded by a ForEach - like VStack, LazyVStack, HStack, LazyHStack, etc."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/custom-separator-divider-in-swiftui-lists"
+image: "https://swiftuirecipes.com/user/pages/01.blog/custom-separator-divider-in-swiftui-lists/ezgif-2-c66ddfeec0a2.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+maxSwiftUIVersion: 2
+---
+struct ForEachWithSeparator<Data: RandomAccessCollection, Content: View, Separator: View>: View 
+where Data.Element: Hashable {
+  let data: Data // data to render
+  let content: (Data.Element) -> Content // data item render
+  let separator: (Data.Element) -> Separator // separator renderer
+  let showLast: Bool // if true, shows the separator at the end of the list
+
+  var body: some View {
+    let size = data.count * 2 - (showLast ? 0 : 1)
+    let firstIndex = data.indices.startIndex
+    return ForEach(0..<size) { i in
+      let element = data[data.index(firstIndex, offsetBy: i / 2)]
+      if i % 2 == 0 {
+        content(element)
+      } else {
+        separator(element)
+      }
+    }
+  }
+}
+
+extension ForEach where Data.Element: Hashable, Content: View {
+  func separator<Separator: View>(showLast: Bool = true,
+                                  @ViewBuilder separator: @escaping (Data.Element) -> Separator) -> some View {
+    ForEachWithSeparator(data: data,
+                         content: content,
+                         separator: separator,
+                         showLast: showLast)
+  }
+}
+
+/*
+// Sample usage
+
+struct Separator_Previews: PreviewProvider {
+  static let colors: [Color] = [.red, .blue, .green, .gray, .orange, .pink, .purple, .yellow, .black]
+  static let items = ["Lorem", "ipsum", "dolor", "sit", "amet,", "consectetur", "adipiscing", "elit,", "sed", "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore", "magna", "aliqua.", "Ut", "enim", "ad", "minim", "veniam,", "quis", "nostrud", "exercitation", "ullamco", "laboris", "nisi", "ut", "aliquip", "ex", "ea", "commodo", "consequat.", "Duis", "aute", "irure", "dolor", "in", "reprehenderit", "in", "voluptate", "velit", "esse", "cillum", "dolore", "eu", "fugiat", "nulla", "pariatur.", "Excepteur", "sint", "occaecat", "cupidatat", "non", "proident,", "sunt", "in", "culpa", "qui", "officia", "deserunt", "mollit", "anim", "id", "est", "laborum."]
+
+  static var previews: some View {
+    ScrollView {
+      LazyVStack {
+        ForEach(items, id: \.self) { item in
+          Text(item)
+        }.separator(showLast: true) { item in
+          let size = item.count - 1
+          let colorIndex = min(size, colors.count - 1)
+          Rectangle()
+            .fill(colors[colorIndex])
+            .frame(height: CGFloat(size) * 1.2)
+        }
+      }
+    }
+  }
+}
+*/
