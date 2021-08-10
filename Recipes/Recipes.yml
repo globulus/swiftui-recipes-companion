@@ -55,3 +55,6 @@ recipes:
   - SVGImage
   - SearchBar@1-2
   - SearchBar@3
+  - SpinnerActivityIndicator@1
+  - SpinnerActivityIndicator@2+
+  - NavigationBarButtonImage

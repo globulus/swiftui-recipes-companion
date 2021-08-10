@@ -7,11 +7,9 @@ updatedAt: "2021-07-28T13:00:00"
 minSwiftUIVersion: 1
 ---
 List(1...100, id: \.self) { item in
-  HStack {
-    Text("\(item)")
-    Spacer()
-    Image(systemName: "chevron.right")
-      .foregroundColor(.blue)
-      .frame(width: 32, height: 32)
-  }
+  Text("\(item)")
+  Spacer()
+  Image(systemName: "chevron.right")
+    .foregroundColor(.blue)
+    .frame(width: 32, height: 32)
 }

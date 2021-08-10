@@ -1,0 +1,37 @@
+---
+title: "Spinner / Activity Indicator (1)"
+description: "Spinner / UIActivityIndicator / Circular Progress View in SwiftUI 1."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/SpinnerActivityIndicator.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+maxSwiftUIVersion: 1
+---
+public struct ActivityIndicator: UIViewRepresentable {
+  public typealias UIView = UIActivityIndicatorView
+  public var isAnimating: Bool = true
+  public var configuration = { (indicator: UIView) in }
+
+    public init(isAnimating: Bool = true, configuration: ((UIView) -> Void)? = nil) {
+        self.isAnimating = isAnimating
+        if let configuration = configuration {
+            self.configuration = configuration
+        }
+    }
+
+    public func makeUIView(context: UIViewRepresentableContext<Self>) -> UIView {
+        UIView()
+        
+    }
+
+    public func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<Self>) {
+        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
+        configuration(uiView)
+    }
+}
+
+public extension View where Self == ActivityIndicator {
+    func configure(_ configuration: @escaping (Self.UIView) -> Void) -> Self {
+        Self.init(isAnimating: self.isAnimating, configuration: configuration)
+    }
+}

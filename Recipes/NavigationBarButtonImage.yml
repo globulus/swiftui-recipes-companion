@@ -1,0 +1,26 @@
+---
+title: "Navigation Bar Button Image"
+description: "Show images instead of text in NavigationBar buttons."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/customize-navigation-bar-button-image"
+image: "https://swiftuirecipes.com/user/pages/01.blog/customize-navigation-bar-button-image/Screenshot%202020-10-21%20at%2014.56.57.pngg"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+NavigationView {
+    VStack {
+        Text("Some Text")
+    }.navigationBarTitle("SwiftUI recipes", displayMode: .inline)
+        .navigationBarItems(leading: Button(action: {
+            // do something
+        }) {
+            Image(systemName: "xmark")
+                .imageScale(.large)
+        }, trailing: Button(action: {
+            // do something
+        }) {
+            Image(systemName: "checkmark")
+                .imageScale(.large)
+        })
+    }
+}

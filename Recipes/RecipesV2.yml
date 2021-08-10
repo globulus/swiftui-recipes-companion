@@ -115,3 +115,10 @@ recipes:
       minSwiftUIVersion: 1
   - SearchBar@3:
       minSwiftUIVersion: 3
+  - SpinnerActivityIndicator@1:
+      minSwiftUIVersion: 1
+      maxSwiftUIVersion: 1
+  - SpinnerActivityIndicator@2+:
+      minSwiftUIVersion: 2
+  - NavigationBarButtonImage:
+      minSwiftUIVersion: 1
