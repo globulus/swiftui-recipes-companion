@@ -35,7 +35,7 @@ struct HomeView: View {
     
     private var headerView: some View {
         HStack {
-            Text("Available recipes:")
+            Text("Available recipes (\(viewModel.recipes.count)):")
             Spacer()
             refreshView
         }
@@ -105,6 +105,9 @@ struct HomeView: View {
                         Divider()
                         if let image = viewModel.recipeImage {
                             Image(nsImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxHeight: 400)
                         } else {
                             ActivityIndicator()
                                 .onAppear(perform: viewModel.loadRecipeImage)

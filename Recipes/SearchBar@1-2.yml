@@ -1,0 +1,69 @@
+---
+title: "Search Bar (1-2)"
+description: "Create a search bar in SwiftUI, working on version 1 and above."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/search-bar-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/search-bar-in-swiftui/Screenshot%202020-10-19%20at%2017.43.10.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct SearchBar: View {
+    @Binding var isShowing: Bool // determines visibility
+    @Binding var text: String // the inputted search text
+    @State private var isEditing = false
+
+    var body: some View {
+        Group {
+            // If the bar should be shown, render it, otherwise
+            // use an EmptyView
+            if isShowing {
+                HStack {
+                    TextField("Search...", text: $text)
+                        .padding(7)
+                        .padding(.horizontal, 25)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .overlay(HStack { // Add the search icon to the left
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.gray)
+                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, 8)
+
+                            // If the search field is focused, add the clear (X) button
+                            if isEditing {
+                                Button(action: {
+                                    self.text = ""
+                                }) {
+                                    Image(systemName: "multiply.circle.fill")
+                                        .foregroundColor(.gray)
+                                        .padding(.trailing, 8)
+                                }
+                            }
+                        }).padding(.horizontal, 10)
+                        .onTapGesture {
+                            self.isEditing = true
+                        }
+
+                    // If the search field is focused, render the "Cancel" button
+                    // to the right that hides the search bar altogether
+                    if isEditing {
+                        Button(action: {
+                            self.isEditing = false
+                            self.text = ""
+                            self.isShowing = false
+                            // Dismiss the keyboard
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        }) {
+                            Text("Cancel")
+                                .foregroundColor(.white)
+                        }.padding(.trailing, 10)
+                        .transition(.move(edge: .trailing))
+                        .animation(.default)
+                    }
+                }
+            } else {
+                EmptyView()
+            }
+        }
+    }
+}

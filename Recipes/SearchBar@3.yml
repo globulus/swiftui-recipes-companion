@@ -1,0 +1,27 @@
+---
+title: "Search Bar (3)"
+description: "Create a search bar in SwiftUI, working on version 3 and above."
+author: "Gordan"
+image: "https://swiftuirecipes.com/user/pages/01.blog/search-bar-in-swiftui/Screenshot%202020-10-19%20at%2017.43.10.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+let cities = ["London", "Paris", "Rome"]
+@State private var search = ""
+var filteredCities: [String] {
+    cities.filter { $0.contains(search) }
+}
+
+var body: some View {
+    NavigationView {
+        List(filteredCities, id: \.self) { city in
+            Text(city)
+        }
+        .searchable(text: $search, prompt: "Filter cities") {
+            ForEach(filteredCities, id: \.self) { result in // search suggestions
+                Text("Are you looking for \(result)?")
+                    .searchCompletion(result)
+            }
+        }
+    }
+}

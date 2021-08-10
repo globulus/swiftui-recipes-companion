@@ -53,3 +53,5 @@ recipes:
   - MapWithCustomAnnotations
   - TopTabs
   - SVGImage
+  - SearchBar@1-2
+  - SearchBar@3
