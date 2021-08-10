@@ -1,0 +1,55 @@
+---
+title: "SVG Image"
+description: "Use SVG images in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/svg-images-in-swiftui"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+import Macaw
+
+struct SVGImage: UIViewRepresentable {
+  // a binding allows for dynamic updates to the shown image
+  @Binding var name: String 
+
+  init(name: Binding<String>) {
+    _name = name
+  }
+
+  // convenience constructor to allow for a constant image name
+  init(name: String) {
+    _name = .constant(name)
+  }
+
+  func makeUIView(context: Context) -> SVGView {
+    let svgView = SVGView()
+    svgView.backgroundColor = UIColor(white: 1.0, alpha: 0.0) // otherwise the background is black
+    svgView.contentMode = .scaleToFill
+    return svgView
+  }
+
+  func updateUIView(_ uiView: SVGView, context: Context) {
+    uiView.fileName = name
+  }
+}
+
+/*
+// Sample usage
+
+struct MyView: View {
+  @Binding var image2Name = "image2"
+
+  var body: some View {
+    VStack {
+      SVGImage(name: "image1")
+        .frame(width: 50, height: 50)
+      Button(action: {
+        image2Name = "image3"
+      }) {
+        SVGImage(name: $image2Name)
+          .frame(width: 60, height: 40)
+      }
+    }
+  }
+}
+*/

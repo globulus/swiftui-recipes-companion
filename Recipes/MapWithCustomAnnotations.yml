@@ -1,0 +1,77 @@
+---
+title: "Map with Custom Annotations"
+description: "Map View with custom, mixed annotations in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/map-with-annotations-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/map-with-annotations-in-swiftui/gif.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+import SwiftUI
+import MapKit
+
+struct MapView: View {
+  @State private var region = MKCoordinateRegion(
+      center: CLLocationCoordinate2D(latitude: 45.5473973, longitude: 18.6786983), 
+      span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25))
+
+  private let locations = [
+    Location(
+        coordinate: CLLocationCoordinate2D(latitude: 45.5550119, longitude: 18.6786983),
+        mark: .pin(tint: .green)),
+    Location(
+        coordinate: CLLocationCoordinate2D(latitude: 45.5585655, longitude: 18.6892519), 
+        mark: .marker(tint: .blue)),
+    Location(
+         coordinate: CLLocationCoordinate2D(latitude: 45.5473353, longitude: 18.6890417), 
+         mark: .flag(pricing: 3, tint: .orange)),
+  ]
+
+  var body: some View {
+    Map(coordinateRegion: $region,
+        interactionModes: [.all],
+        showsUserLocation: true,
+        userTrackingMode: .constant(.follow),
+        annotationItems: locations) { item in
+        mark(for: item)
+    }
+  }
+
+  private func mark(for location: Location) -> some MapAnnotationProtocol {
+    switch location.mark {
+    case .pin(tint: let tint):
+      return AnyMapAnnotationProtocol(MapPin(coordinate: location.coordinate, tint: tint))
+    case .marker(tint: let tint):
+      return AnyMapAnnotationProtocol(MapMarker(coordinate: location.coordinate, tint: tint))
+    case .flag(pricing: let pricing, tint: let tint):
+      return AnyMapAnnotationProtocol(MapAnnotation(coordinate: location.coordinate) {
+        Text(String.init(repeating: "$", count: pricing))
+          .font(.system(size: 12))
+          .fontWeight(.semibold)
+          .background(tint.cornerRadius(4))
+      })
+    }
+ }
+}
+
+private struct Location: Identifiable {
+  let id = UUID()
+  let coordinate: CLLocationCoordinate2D
+  let mark: MapMark
+}
+
+private enum MapMark {
+  case pin(tint: Color),
+       marker(tint: Color),
+       flag(pricing: Int, tint: Color)
+}
+
+private struct AnyMapAnnotationProtocol: MapAnnotationProtocol {
+  let _annotationData: _MapAnnotationData
+  let value: Any
+
+  init<WrappedType: MapAnnotationProtocol>(_ value: WrappedType) {
+    self.value = value
+    _annotationData = value._annotationData
+  }
+}

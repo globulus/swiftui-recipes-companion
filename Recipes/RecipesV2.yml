@@ -101,3 +101,13 @@ recipes:
       maxSwiftUIVersion: 2
   - ListSeparatorColor@3:
       minSwiftUIVersion: 3
+  - PagerSwiperView:
+      minSwiftUIVersion: 1
+  - MapView:
+      minSwiftUIVersion: 2
+  - MapWithCustomAnnotations:
+      minSwiftUIVersion: 2
+  - TopTabs:
+      minSwiftUIVersion: 1
+  - SVGImage:
+      minSwiftUIVersion: 1

@@ -48,3 +48,8 @@ recipes:
   - PullToRefresh@3
   - ListSeparatorColor@1-2
   - ListSeparatorColor@3
+  - PagerSwiperView
+  - MapView
+  - MapWithCustomAnnotations
+  - TopTabs
+  - SVGImage

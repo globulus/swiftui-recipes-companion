@@ -1,0 +1,28 @@
+---
+title: "Map View"
+description: "Map View with some annotations in SwiftUI."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+import SwiftUI
+import MapKit
+
+struct MapView: View {
+  @State private var region = MKCoordinateRegion(
+      center: CLLocationCoordinate2D(latitude: 45.5473973, longitude: 18.6786983), 
+      span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25))
+
+  var body: some View {
+    Map(coordinateRegion: $region,
+        interactionModes: [.all],
+        showsUserLocation: true,
+        userTrackingMode: .constant(.follow),
+        annotationItems: [
+          Location(coordinate: CLLocationCoordinate2D(latitude: 45.5550119, longitude: 18.6786983)),
+          Location(coordinate: CLLocationCoordinate2D(latitude: 45.5585655, longitude: 18.6892519))
+        ]) { item in
+          MapPin(coordinate: item.coordinate)
+        }
+  }
+}

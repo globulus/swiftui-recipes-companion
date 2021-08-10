@@ -21,8 +21,10 @@ class RecipeManager {
 
 extension Recipe {
     var commandIdentifier: String {
-        SourceEditorCommand.runCompanionCommandIdentifier + header.title
+        SourceEditorCommand.commandIdentifierPrefix + header.title
             .replacingOccurrences(of: " ", with: "-")
+            .replacingOccurrences(of: "@", with: "-")
+            .replacingOccurrences(of: "_", with: "-")
             .replacingOccurrences(of: "/", with: "")
             .replacingOccurrences(of: "(", with: "")
             .replacingOccurrences(of: ")", with: "")
