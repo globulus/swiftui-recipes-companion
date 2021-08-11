@@ -1,0 +1,46 @@
+---
+title: "Arc"
+description: "Arc Shape in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-arc"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-arc/Screenshot%202021-08-11%20at%2012.48.33.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct Arc: Shape {
+  let startAngle: Angle
+  let endAngle: Angle
+  let clockwise: Bool
+
+  func path(in rect: CGRect) -> Path {
+    var path = Path()
+    let radius = max(rect.size.width, rect.size.height) / 2
+    path.addArc(center: CGPoint(x: rect.midX, y: rect.midY),
+                radius: radius,
+                startAngle: startAngle,
+                endAngle: endAngle,
+                clockwise: clockwise)
+    return path
+  }
+}
+
+/*
+// Sample usage
+
+Arc(startAngle: .degrees(0), endAngle: .degrees(120), clockwise: false)
+  .fill(Color.red)
+  .frame(width: 50, height: 50)
+
+Arc(startAngle: .degrees(75), endAngle: .degrees(245), clockwise: true)
+  .stroke(Color.blue, lineWidth: 3)
+  .frame(width: 100, height: 100)
+
+Arc(startAngle: .radians(.pi), endAngle: .radians(.pi * 1.5), clockwise: true)
+  .stroke(style: .init(lineWidth: 2,
+                       lineCap: .round,
+                       lineJoin: .miter,
+                       miterLimit: 0,
+                       dash: [2, 3],
+                       dashPhase: 1))
+  .frame(width: 70, height: 70)
+*/

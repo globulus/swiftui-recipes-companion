@@ -124,3 +124,5 @@ recipes:
       minSwiftUIVersion: 1
   - CustomToggleCheckbox:
       minSwiftUIVersion: 1
+  - Arc:
+      minSwiftUIVersion: 1
