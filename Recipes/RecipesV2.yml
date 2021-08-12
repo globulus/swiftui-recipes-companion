@@ -126,3 +126,7 @@ recipes:
       minSwiftUIVersion: 1
   - Arc:
       minSwiftUIVersion: 1
+  - CustomProgressViewStyle:
+      minSwiftUIVersion: 2
+  - CircularProgressBar:
+      minSwiftUIVersion: 2

@@ -1,0 +1,71 @@
+---
+title: "Circular Progress Bar"
+description: "Implement a custom progress view as a circular progress bar in SwiftUI."
+author: "Gordan"
+url: "https://github.com/globulus/swiftui-circle-progress-bar"
+image: "https://github.com/globulus/swiftui-circle-progress-bar/blob/main/Images/preview.gif?raw=true"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+public struct RingProgressViewStyle: ProgressViewStyle {
+  private let defaultSize: CGFloat = 36
+  private let lineWidth: CGFloat = 6
+  private let defaultProgress = 0.2
+
+  @State private var fillRotationAngle = Angle.degrees(-90)
+
+  public func makeBody(configuration: ProgressViewStyleConfiguration) -> some View {
+    VStack {
+      configuration.label
+      progressCircleView(fractionCompleted: configuration.fractionCompleted ?? defaultProgress,
+               isIndefinite: configuration.fractionCompleted == nil)
+      configuration.currentValueLabel
+    }
+  }
+
+  private func progressCircleView(fractionCompleted: Double,
+                              isIndefinite: Bool) -> some View {
+    Circle()
+      .strokeBorder(Color.gray.opacity(0.5), lineWidth: lineWidth, antialiased: true)
+      .overlay(fillView(fractionCompleted: fractionCompleted, isIndefinite: isIndefinite)) // UPDATE
+      .frame(width: defaultSize, height: defaultSize)
+  }
+
+  private func fillView(fractionCompleted: Double,
+                              isIndefinite: Bool) -> some View {
+    Circle() // the fill view is also a circle
+      .trim(from: 0, to: CGFloat(fractionCompleted))
+      .stroke(Color.secondary, lineWidth: lineWidth)
+      .frame(width: defaultSize - lineWidth, height: defaultSize - lineWidth)
+      .rotationEffect(fillRotationAngle)
+      .onAppear {
+        if isIndefinite {
+          withAnimation(.easeInOut(duration: 1).repeatForever()) {
+            fillRotationAngle = .degrees(270)
+          }
+        }
+      }
+  }
+}
+
+/*
+// Sample usage
+
+@State private var progress = 0.0
+
+var body: some View {
+  VStack(spacing: 40) {
+   Slider(value: $progress, in: 0.0...1.0) {
+     Text("Slider")
+   }
+
+   ProgressView(value: progress, total: 1.0) {
+     Text("Label inside")
+    } currentValueLabel: {
+      Text(String(format: "%0.2f%%", progress))
+    }.progressViewStyle(RingProgressViewStyle())
+}
+
+ProgressView("Indefinite")
+  .progressViewStyle(RingProgressViewStyle())
+*/

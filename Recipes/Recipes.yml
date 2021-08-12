@@ -60,3 +60,5 @@ recipes:
   - NavigationBarButtonImage
   - CustomToggleCheckbox
   - Arc
+  - CustomProgressViewStyle
+  - CircularProgressBar
