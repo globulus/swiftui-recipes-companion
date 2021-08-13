@@ -62,3 +62,6 @@ recipes:
   - Arc
   - CustomProgressViewStyle
   - CircularProgressBar
+  - WebView
+  - TopAlignVStack
+  - BottomAlignVStack

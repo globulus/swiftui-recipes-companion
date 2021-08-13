@@ -1,0 +1,13 @@
+---
+title: "Bottom Align VStack"
+description: "Make VStack lay out its views vertically from the bottom."
+author: "Gordan"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/BottomAlignVStack.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+VStack {
+    Spacer() // THIS IS THE KEY
+    Text("Some text")
+    Text("More text")
+}

@@ -130,3 +130,9 @@ recipes:
       minSwiftUIVersion: 2
   - CircularProgressBar:
       minSwiftUIVersion: 2
+  - WebView:
+      minSwiftUIVersion: 1
+  - TopAlignVStack:
+      minSwiftUIVersion: 1
+  - BottomAlignVStack:
+      minSwiftUIVersion: 1
