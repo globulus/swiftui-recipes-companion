@@ -2,7 +2,7 @@
 title: "Toggle / Switch"
 description: "Basic switch / toggle control in SwiftUI."
 author: "Gordan"
-image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/SegmentedControl.png"
+image: "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/main/Recipes/ToggleSwitch.png"
 updatedAt: "2021-07-28T13:00:00"
 minSwiftUIVersion: 1
 ---
