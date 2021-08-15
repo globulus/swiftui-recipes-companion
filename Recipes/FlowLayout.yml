@@ -1,6 +1,6 @@
 ---
 title: "Flow Layout / Collection / Tag Cloud"
-description: "A Flow Layout is a container that orders its views sequentially, breaking into a new "line" according to the available width of the screen. You can compare it to a left-aligned block of text, where every word is a View."
+description: "A Flow Layout is a container that orders its views sequentially, breaking into a new line according to the available width of the screen. You can compare it to a left-aligned block of text, where every word is a View."
 author: "Gordan"
 url: "https://swiftuirecipes.com/blog/flow-layout-in-swiftui"
 image: "https://swiftuirecipes.com/user/pages/01.blog/flow-layout-in-swiftui/Screenshot%202020-11-20%20at%2010.54.37.png"
