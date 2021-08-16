@@ -43,7 +43,7 @@ struct SearchBar: View {
                 }
                 .padding(.leading, 8)
                 Spacer()
-            }).padding(.horizontal, 10)
+            })
     }
     
     private var cancelButton: some View {

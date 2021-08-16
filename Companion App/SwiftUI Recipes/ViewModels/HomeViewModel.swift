@@ -22,20 +22,31 @@ class HomeViewModel: ObservableObject {
     
     @Published var isLoading = false
     @Published var loadingMessage = ""
+    
     @Published var filterText = ""
+    @Published var advancedFilter = false
+    @Published var minSwiftUIVersion: Float = 1.0
+    @Published var maxSwiftUIVersion: Float = 3.0
+    
     @Published var focusRecipe: Recipe?
     @Published var alternativeVersionRecipes = [Recipe]()
     @Published var recipeImageData: Data?
     @Published var webViewAction = WebViewAction.idle
     @Published var webViewState = WebViewState.empty
+    
     @Published var saveMessage = ""
     @Published var errorMessage = ""
     
     var recipes: [Recipe] {
-        filterText.isEmpty
-            ? allRecipes
-            : allRecipes.filter { $0.header.title.localizedCaseInsensitiveContains(filterText)
-                || $0.header.description.localizedCaseInsensitiveContains(filterText) }
+        let satisfiesSearch: (Recipe) -> Bool = filterText.isEmpty
+            ? { _ in true }
+            : { $0.header.title.localizedCaseInsensitiveContains(self.filterText)
+                || $0.header.description.localizedCaseInsensitiveContains(self.filterText) }
+        let satisfiesVersion: (Recipe) -> Bool = advancedFilter
+            ? { $0.header.minSwiftUIVersion <= self.minSwiftUIVersion
+                && ($0.header.maxSwiftUIVersion ?? Float.greatestFiniteMagnitude) >= self.maxSwiftUIVersion }
+            : { _ in true }
+        return allRecipes.filter { satisfiesSearch($0) && satisfiesVersion($0) }
     }
     
     init(recipeRepo: RecipeRepo,

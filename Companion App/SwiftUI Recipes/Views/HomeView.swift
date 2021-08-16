@@ -15,10 +15,10 @@ struct HomeView: View {
     var body: some View {
         VStack {
             NavigationView {
-                VStack {
+                VStack(alignment: .leading) {
                     headerView
                     recipeList
-                    SearchBar(isShowing: .constant(true), text: $viewModel.filterText)
+                    filterView
                     saveView
                     if !viewModel.errorMessage.isEmpty {
                         Text(viewModel.errorMessage)
@@ -101,6 +101,28 @@ struct HomeView: View {
         }
         .background((colorScheme == .dark) ? Color.black : Color.white)
         .buttonStyle(PlainButtonStyle())
+    }
+    
+    private var filterView: some View {
+        Group {
+            SearchBar(isShowing: .constant(true), text: $viewModel.filterText)
+            Toggle("Advanced filter", isOn: $viewModel.advancedFilter)
+                .padding(.leading, 10)
+            if viewModel.advancedFilter {
+                Text("Min SwiftUI Version: \(Int(viewModel.minSwiftUIVersion))")
+                    .padding(.leading, 10)
+                Slider(value: $viewModel.minSwiftUIVersion,
+                       in: 1.0...3.0,
+                       step: 1.0) { _ in }
+                    .padding(.horizontal)
+                Text("Max SwiftUI Version: \(Int(viewModel.maxSwiftUIVersion))")
+                    .padding(.leading, 10)
+                Slider(value: $viewModel.maxSwiftUIVersion,
+                       in: 1.0...3.0,
+                       step: 1.0) { _ in }
+                    .padding(.horizontal)
+            }
+        }
     }
     
     private var saveView: some View {

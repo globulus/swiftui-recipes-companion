@@ -10,7 +10,7 @@ import Foundation
 private let dev = EnvironmentConfig(branch: "develop", version: 2)
 private let prod = EnvironmentConfig(branch: "main", version: 2)
 
-let environment = dev
+let environment = prod
 #if DEBUG
 var isDebug = true
 #else
