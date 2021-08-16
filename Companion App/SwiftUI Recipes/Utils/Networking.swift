@@ -51,7 +51,7 @@ class NetworkingImpl: Networking {
                                   headers: nil)
                     .publishData()
                     .compactMap(\.data)
-                    .mapError { $0 }
+                    .mapError { NetworkingError.serverError($0.localizedDescription) }
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()

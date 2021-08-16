@@ -7,10 +7,10 @@
 
 import Foundation
 
-private let dev = EnvironmentConfig(branch: "develop")
-private let prod = EnvironmentConfig(branch: "main")
+private let dev = EnvironmentConfig(branch: "develop", version: 2)
+private let prod = EnvironmentConfig(branch: "main", version: 2)
 
-let environment = prod
+let environment = dev
 #if DEBUG
 var isDebug = true
 #else
@@ -19,6 +19,7 @@ var isDebug = false
 
 struct EnvironmentConfig {
     let branch: String
+    let version: Int
     
     var baseUrl: String {
         "https://raw.githubusercontent.com/globulus/swiftui-recipes-companion/\(branch)/"

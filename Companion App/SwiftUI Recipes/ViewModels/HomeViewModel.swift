@@ -10,6 +10,8 @@ import SwiftUI
 import Combine
 import Alamofire
 import SwiftUIWebView
+import HTMLEntities
+import SwiftyGif
 
 class HomeViewModel: ObservableObject {
     private let recipeRepo: RecipeRepo
@@ -21,8 +23,9 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var loadingMessage = ""
     @Published var filterText = ""
-    @Published var focusRecipe: Recipe? = nil
-    @Published var recipeImage: NSImage? = nil
+    @Published var focusRecipe: Recipe?
+    @Published var alternativeVersionRecipes = [Recipe]()
+    @Published var recipeImageData: Data?
     @Published var webViewAction = WebViewAction.idle
     @Published var webViewState = WebViewState.empty
     @Published var saveMessage = ""
@@ -82,7 +85,8 @@ class HomeViewModel: ObservableObject {
     }
     
     func focus(_ recipe: Recipe) {
-        recipeImage = nil
+        recipeImageData = nil
+        alternativeVersionRecipes = variants(for: recipe)
         focusRecipe = recipe
         loadRecipeCode()
     }
@@ -103,11 +107,15 @@ class HomeViewModel: ObservableObject {
                 }
             }
             .sinkJust { [self] data in
-                recipeImage = NSImage(data: data)
+                recipeImageData = data
             } onError: { [self] error in
                 errorMessage = error.localizedDescription
             }
             .store(in: &subs)
+    }
+    
+    var isRecipeImageGif: Bool {
+        focusRecipe?.header.image?.hasSuffix("gif") == true
     }
     
     func loadRecipeCode() {
@@ -118,7 +126,17 @@ class HomeViewModel: ObservableObject {
         else {
             return
         }
-        let fullCode = content.replacingOccurrences(of: "RECIPE_CODE", with: recipe.code)
+        let fullCode = content.replacingOccurrences(of: "RECIPE_CODE", with: recipe.code.htmlEscape())
         webViewAction = .loadHTML(fullCode)
+    }
+    
+    private func variants(for recipe: Recipe) -> [Recipe] {
+        guard let fileName = recipe.fileName,
+              let atIndex = fileName.firstIndex(of: "@")
+        else {
+            return []
+        }
+        let commonName = fileName[..<atIndex]
+        return recipes.filter { $0 != recipe && $0.fileName?.contains(commonName) == true }
     }
 }

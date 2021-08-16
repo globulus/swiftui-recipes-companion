@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "HTMLEntities",
+        "repositoryURL": "https://github.com/Kitura/swift-html-entities.git",
+        "state": {
+          "branch": null,
+          "revision": "2b14531d0c36dbb7c1c45a4d38db9c2e7898a307",
+          "version": "3.0.200"
+        }
+      },
+      {
         "package": "SwiftUIWebView",
         "repositoryURL": "https://github.com/globulus/swiftui-webview.git",
         "state": {
@@ -26,6 +35,15 @@
           "branch": null,
           "revision": "2c039501d6eeb4d4cd4aec4a8d884ad28862e044",
           "version": "1.9.5"
+        }
+      },
+      {
+        "package": "SwiftyGif",
+        "repositoryURL": "https://github.com/kirualex/SwiftyGif.git",
+        "state": {
+          "branch": null,
+          "revision": "0cd770feed5807d9fd4fa8df5ad74b56b814b0c8",
+          "version": "5.4.0"
         }
       },
       {

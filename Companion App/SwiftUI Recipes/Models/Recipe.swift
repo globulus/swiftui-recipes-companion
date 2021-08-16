@@ -16,11 +16,14 @@ struct RecipeHeader: Codable, Hashable {
     let updatedAt: String
     let minSwiftUIVersion: Float
     let maxSwiftUIVersion: Float?
+    
     var isActive: Bool?
 }
 
 struct Recipe: Codable, Hashable {
     var header: RecipeHeader
     let code: String
+    
+    var fileName: String?
 }
 

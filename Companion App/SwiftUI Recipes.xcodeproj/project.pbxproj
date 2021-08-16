@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A3492A726CA7DD0008F5B96 /* HTMLEntities in Frameworks */ = {isa = PBXBuildFile; productRef = 6A3492A626CA7DD0008F5B96 /* HTMLEntities */; };
+		6A3492AA26CA807E008F5B96 /* SwiftyGif in Frameworks */ = {isa = PBXBuildFile; productRef = 6A3492A926CA807E008F5B96 /* SwiftyGif */; };
+		6A3492AC26CA80E2008F5B96 /* GIFImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3492AB26CA80E2008F5B96 /* GIFImage.swift */; };
 		6A5E343126B025EB00EABC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E343026B025EB00EABC58 /* AppDelegate.swift */; };
 		6A5E343326B025EB00EABC58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5E343226B025EB00EABC58 /* ContentView.swift */; };
 		6A5E343526B025EE00EABC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A5E343426B025EE00EABC58 /* Assets.xcassets */; };
@@ -85,6 +88,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6A3492AB26CA80E2008F5B96 /* GIFImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFImage.swift; sourceTree = "<group>"; };
 		6A5E342D26B025EB00EABC58 /* SwiftUI Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI Recipes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A5E343026B025EB00EABC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A5E343226B025EB00EABC58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -131,8 +135,10 @@
 			files = (
 				6A5E347D26B13D8500EABC58 /* Alamofire in Frameworks */,
 				6A5E349E26B1A9C900EABC58 /* Yams in Frameworks */,
+				6A3492A726CA7DD0008F5B96 /* HTMLEntities in Frameworks */,
 				6AB3F84626C9185200DBB17B /* SwiftUIWebView in Frameworks */,
 				6A5E348226B13E0000EABC58 /* SwiftyBeaver in Frameworks */,
+				6A3492AA26CA807E008F5B96 /* SwiftyGif in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +297,7 @@
 			children = (
 				6A5E349026B14E0700EABC58 /* ActivityIndicator.swift */,
 				6A5E34AF26B91CC300EABC58 /* SearchBar.swift */,
+				6A3492AB26CA80E2008F5B96 /* GIFImage.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -318,6 +325,8 @@
 				6A5E348126B13E0000EABC58 /* SwiftyBeaver */,
 				6A5E349D26B1A9C900EABC58 /* Yams */,
 				6AB3F84526C9185200DBB17B /* SwiftUIWebView */,
+				6A3492A626CA7DD0008F5B96 /* HTMLEntities */,
+				6A3492A926CA807E008F5B96 /* SwiftyGif */,
 			);
 			productName = "SwiftUI Recipes";
 			productReference = 6A5E342D26B025EB00EABC58 /* SwiftUI Recipes.app */;
@@ -372,6 +381,8 @@
 				6A5E348026B13E0000EABC58 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 				6A5E349C26B1A9C900EABC58 /* XCRemoteSwiftPackageReference "Yams" */,
 				6AB3F84426C9185200DBB17B /* XCRemoteSwiftPackageReference "swiftui-webview" */,
+				6A3492A526CA7DD0008F5B96 /* XCRemoteSwiftPackageReference "swift-html-entities" */,
+				6A3492A826CA807E008F5B96 /* XCRemoteSwiftPackageReference "SwiftyGif" */,
 			);
 			productRefGroup = 6A5E342E26B025EB00EABC58 /* Products */;
 			projectDirPath = "";
@@ -415,6 +426,7 @@
 				6A5E34A026B1A9E800EABC58 /* RecipeFileList.swift in Sources */,
 				6A5E348926B1485100EABC58 /* Recipe.swift in Sources */,
 				6A5E349126B14E0700EABC58 /* ActivityIndicator.swift in Sources */,
+				6A3492AC26CA80E2008F5B96 /* GIFImage.swift in Sources */,
 				6A5E349726B15A3700EABC58 /* DateUtil.swift in Sources */,
 				6A5E347726B13C4F00EABC58 /* RecipeService.swift in Sources */,
 				6A5E34B026B91CC300EABC58 /* SearchBar.swift in Sources */,
@@ -715,6 +727,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6A3492A526CA7DD0008F5B96 /* XCRemoteSwiftPackageReference "swift-html-entities" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/swift-html-entities.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.200;
+			};
+		};
+		6A3492A826CA807E008F5B96 /* XCRemoteSwiftPackageReference "SwiftyGif" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kirualex/SwiftyGif.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
 		6A5E347B26B13D8500EABC58 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -750,6 +778,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6A3492A626CA7DD0008F5B96 /* HTMLEntities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A3492A526CA7DD0008F5B96 /* XCRemoteSwiftPackageReference "swift-html-entities" */;
+			productName = HTMLEntities;
+		};
+		6A3492A926CA807E008F5B96 /* SwiftyGif */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A3492A826CA807E008F5B96 /* XCRemoteSwiftPackageReference "SwiftyGif" */;
+			productName = SwiftyGif;
+		};
 		6A5E347C26B13D8500EABC58 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6A5E347B26B13D8500EABC58 /* XCRemoteSwiftPackageReference "Alamofire" */;

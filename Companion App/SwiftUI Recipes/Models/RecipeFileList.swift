@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct RecipeMetadata: Codable {
+    let minSwiftUIVersion: Int?
+    let maxSwiftUIVersion: Int?
+}
+
 struct RecipeFileList: Codable {
-    let recipes: [String]
+    let recipes: [[String: RecipeMetadata]]
 }

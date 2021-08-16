@@ -129,36 +129,75 @@ struct HomeView: View {
                     }
                     Text("Updated at: \(header.formattedUpdatedAt)")
                     Text("SwiftUI Version: \(header.versionRange)")
+                    alternativeVersions
                     Divider()
                     HStack(alignment: .top) {
                         if header.image != nil {
-                            if let image = viewModel.recipeImage {
-                                Image(nsImage: image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(maxWidth: 300, maxHeight: 400)
-                            } else {
-                                ActivityIndicator()
-                                    .onAppear(perform: viewModel.loadRecipeImage)
-                            }
+                            recipeImage(viewModel.recipeImageData)
                         }
-                        VStack(alignment: .leading) {
-                            Button("Copy code to clipboard") {
-                                NSPasteboard.general.clearContents()
-                                NSPasteboard.general.setString(viewModel.focusRecipe!.code, forType: .string)
-                            }
-                            WebView(action: $viewModel.webViewAction,
-                                    state: $viewModel.webViewState)
-                                .overlay(RoundedRectangle(cornerRadius: 4).strokeBorder(Color.red))
-                                .frame(minHeight: 400)
-                            }
-                        }
+                        recipeCode
+                    }
                 }
             }
             .padding()
             .frame(maxWidth: .infinity)
         }
         .background((colorScheme == .dark) ? Color.black : Color.white)
+    }
+    
+    private var alternativeVersions: some View {
+        Group {
+            if !viewModel.alternativeVersionRecipes.isEmpty {
+                Divider()
+                Text("This recipe has alternative versions:")
+                ForEach(viewModel.alternativeVersionRecipes, id: \.self) { variant in
+                    Button(action: {
+                        viewModel.focus(variant)
+                    }) {
+                        HStack {
+                            Circle()
+                                .fill(Color.black)
+                                .frame(width: 6, height: 6)
+                            Text("Version for SwiftUI \(variant.header.versionRange)")
+                        }
+                        .padding(.leading, 8)
+                        .foregroundColor(.blue)
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+        }
+    }
+    
+    private func recipeImage(_ data: Data?) -> some View {
+        ZStack {
+            if let imageData = data {
+                if viewModel.isRecipeImageGif,
+                   let nsImage = try? NSImage(gifData: imageData) {
+                    GIFImage(nsImage: nsImage)
+                } else if let nsImage = NSImage(data: imageData) {
+                    Image(nsImage: nsImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 300, maxHeight: 400)
+                }
+            } else {
+                ActivityIndicator()
+                    .onAppear(perform: viewModel.loadRecipeImage)
+            }
+        }
+    }
+    
+    private var recipeCode: some View {
+        VStack(alignment: .leading) {
+            Button("Copy code to clipboard") {
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(viewModel.focusRecipe?.code ?? "", forType: .string)
+            }
+            WebView(action: $viewModel.webViewAction,
+                    state: $viewModel.webViewState)
+                .frame(minHeight: 400)
+        }
     }
     
     private var infoView: some View {
