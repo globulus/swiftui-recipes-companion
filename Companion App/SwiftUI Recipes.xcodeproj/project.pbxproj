@@ -605,7 +605,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SwiftUI Recipes/SwiftUI_Recipes.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI Recipes/Preview Content\"";
 				DEVELOPMENT_TEAM = N43KYHR3HM;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -616,6 +616,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swiftuirecipes.SwiftUI-Recipes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -631,7 +632,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SwiftUI Recipes/SwiftUI_Recipes.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI Recipes/Preview Content\"";
 				DEVELOPMENT_TEAM = N43KYHR3HM;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -642,6 +643,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swiftuirecipes.SwiftUI-Recipes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -655,7 +657,7 @@
 				CODE_SIGN_ENTITLEMENTS = Recipes/Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N43KYHR3HM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Recipes/Info.plist;
@@ -664,6 +666,8 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swiftuirecipes.SwiftUI-Recipes.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -678,7 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = Recipes/Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N43KYHR3HM;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Recipes/Info.plist;
@@ -687,6 +691,8 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.swiftuirecipes.SwiftUI-Recipes.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
