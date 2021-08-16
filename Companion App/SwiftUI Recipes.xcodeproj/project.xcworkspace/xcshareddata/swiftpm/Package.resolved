@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "SwiftUIWebView",
+        "repositoryURL": "https://github.com/globulus/swiftui-webview.git",
+        "state": {
+          "branch": null,
+          "revision": "5703dbce0cde57ba5702893cf6a921c1287a7e02",
+          "version": "1.0.2"
+        }
+      },
+      {
         "package": "SwiftyBeaver",
         "repositoryURL": "https://github.com/SwiftyBeaver/SwiftyBeaver.git",
         "state": {

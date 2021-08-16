@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import Alamofire
+import SwiftUIWebView
 
 class HomeViewModel: ObservableObject {
     private let recipeRepo: RecipeRepo
@@ -22,6 +23,8 @@ class HomeViewModel: ObservableObject {
     @Published var filterText = ""
     @Published var focusRecipe: Recipe? = nil
     @Published var recipeImage: NSImage? = nil
+    @Published var webViewAction = WebViewAction.idle
+    @Published var webViewState = WebViewState.empty
     @Published var saveMessage = ""
     @Published var errorMessage = ""
     
@@ -69,6 +72,7 @@ class HomeViewModel: ObservableObject {
             var mutableRecipe = recipe
             mutableRecipe.header.isActive = (recipe.header.isActive == nil) ? false : !recipe.header.isActive!
             allRecipes[index] = mutableRecipe
+            focusRecipe = focusRecipe // doing this to trigger an update
         }
     }
     
@@ -80,6 +84,7 @@ class HomeViewModel: ObservableObject {
     func focus(_ recipe: Recipe) {
         recipeImage = nil
         focusRecipe = recipe
+        loadRecipeCode()
     }
     
     func loadRecipeImage() {
@@ -105,14 +110,15 @@ class HomeViewModel: ObservableObject {
             .store(in: &subs)
     }
     
-    var codeHTMLWithHighlight: String? {
-        guard let recipe = focusRecipe
-//              let path = Bundle.main.path(forResource: "HighlightTemplate", ofType: "html"),
-//              let data = FileManager.default.contents(atPath: path),
-//              let content = String(data: data, encoding: .utf8)
+    func loadRecipeCode() {
+        guard let recipe = focusRecipe,
+              let path = Bundle.main.path(forResource: "HighlightTemplate", ofType: "html"),
+              let data = FileManager.default.contents(atPath: path),
+              let content = String(data: data, encoding: .utf8)
         else {
-            return nil
+            return
         }
-        return recipe.code // content.replacingOccurrences(of: "RECIPE_CODE", with: recipe.code)
+        let fullCode = content.replacingOccurrences(of: "RECIPE_CODE", with: recipe.code)
+        webViewAction = .loadHTML(fullCode)
     }
 }

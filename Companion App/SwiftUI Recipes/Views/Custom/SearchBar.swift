@@ -32,9 +32,16 @@ struct SearchBar: View {
             .padding(.leading, 30)
             .cornerRadius(8)
             .overlay(HStack { // Add the search icon to the left
-                Image("magnifying-glass")
-                    .frame(width: 12, height: 12)
-                    .padding(.leading, 8)
+                Group {
+                    if #available(macOS 11, *) {
+                         Image(systemName: "magnifyingglass")
+                            .frame(width: 24, height: 24)
+                    } else {
+                        Image("magnifying-glass")
+                            .frame(width: 12, height: 12)
+                    }
+                }
+                .padding(.leading, 8)
                 Spacer()
             }).padding(.horizontal, 10)
     }

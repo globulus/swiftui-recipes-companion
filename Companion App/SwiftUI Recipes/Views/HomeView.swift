@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIWebView
 
 struct HomeView: View {
     @Environment(\.colorScheme) var colorScheme
@@ -56,24 +57,50 @@ struct HomeView: View {
     private var recipeList: some View {
         List(viewModel.recipes, id: \.self) { recipe in
             HStack {
-                Text((recipe.header.isActive == false) ? "❌" : "✓")
-                    .font(.system(size: 24))
-                    .frame(width: 30)
-                    .onTapGesture {
-                        viewModel.toggleIsActive(for: recipe)
+                Button(action: {
+                    viewModel.toggleIsActive(for: recipe)
+                }) {
+                    Group {
+                        if #available(macOS 11, *) {
+                            Group {
+                                if recipe.header.isActive == false {
+                                    Image(systemName: "xmark")
+                                        .foregroundColor(.red)
+                                } else {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                            .imageScale(.large)
+                        } else {
+                            Text((recipe.header.isActive == false) ? "❌" : "✓")
+                                .font(.system(size: 24))
+                        }
                     }
-                Text(recipe.header.title)
-                    .lineLimit(nil)
-                Spacer()
-                Text("›")
-                    .font(.system(size: 32))
-                    .foregroundColor(.blue)
-            }
-            .onTapGesture {
-                viewModel.focus(recipe)
+                    .frame(width: 30)
+                }
+                Button(action: {
+                    viewModel.focus(recipe)
+                }) {
+                    HStack {
+                        Text(recipe.header.title)
+                            .lineLimit(nil)
+                        Spacer()
+                        Group {
+                            if #available(macOS 11, *) {
+                                Image(systemName: "chevron.right")
+                                    .imageScale(.large)
+                            } else {
+                                Text("›")
+                                    .font(.system(size: 32))
+                            }
+                        }
+                        .foregroundColor(.blue)
+                    }
+                }
             }
         }
         .background((colorScheme == .dark) ? Color.black : Color.white)
+        .buttonStyle(PlainButtonStyle())
     }
     
     private var saveView: some View {
@@ -87,10 +114,11 @@ struct HomeView: View {
     
     private var detailsView: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 if let header = viewModel.focusRecipe?.header {
-                    Text("Title: \(header.title)")
-                    Text("Description: \(header.description)")
+                    Text(header.title)
+                        .font(.largeTitle)
+                    Text(header.description)
                     Text("Author: \(header.author)")
                     if let headerURL = header.url {
                         Button(headerURL) {
@@ -101,26 +129,31 @@ struct HomeView: View {
                     }
                     Text("Updated at: \(header.formattedUpdatedAt)")
                     Text("SwiftUI Version: \(header.versionRange)")
-                    if header.image != nil {
-                        Divider()
-                        if let image = viewModel.recipeImage {
-                            Image(nsImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxHeight: 400)
-                        } else {
-                            ActivityIndicator()
-                                .onAppear(perform: viewModel.loadRecipeImage)
-                        }
-                    }
                     Divider()
-                    Button("Copy code to clipboard") {
-                        NSPasteboard.general.clearContents()
-                        NSPasteboard.general.setString(viewModel.focusRecipe!.code, forType: .string)
-                    }
+                    HStack(alignment: .top) {
+                        if header.image != nil {
+                            if let image = viewModel.recipeImage {
+                                Image(nsImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: 300, maxHeight: 400)
+                            } else {
+                                ActivityIndicator()
+                                    .onAppear(perform: viewModel.loadRecipeImage)
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Button("Copy code to clipboard") {
+                                NSPasteboard.general.clearContents()
+                                NSPasteboard.general.setString(viewModel.focusRecipe!.code, forType: .string)
+                            }
+                            WebView(action: $viewModel.webViewAction,
+                                    state: $viewModel.webViewState)
+                                .overlay(RoundedRectangle(cornerRadius: 4).strokeBorder(Color.red))
+                                .frame(minHeight: 400)
+                            }
+                        }
                 }
-                Text(viewModel.codeHTMLWithHighlight ?? "")
-                    .multilineTextAlignment(.leading)
             }
             .padding()
             .frame(maxWidth: .infinity)
