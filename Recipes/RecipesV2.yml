@@ -136,3 +136,5 @@ recipes:
       minSwiftUIVersion: 1
   - BottomAlignVStack:
       minSwiftUIVersion: 1
+  - GIFImage:
+      minSwiftUIVersion: 1
