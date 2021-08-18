@@ -28,7 +28,8 @@ recipes:
   - ActionSheet
   - AlertDialog
   - AlertWithTextField
-  - SampleUIViewRepresentable
+  - UseUIViewInSwiftUI
+  - UseUIViewControllerInSwiftUI
   - CustomShape
   - Timer
   - ColorPicker
@@ -69,3 +70,4 @@ recipes:
   - AppDelegateWithSwiftUILifecycle
   - DetectForegroundBackground
   - ScenePhase
+  - ImagePicker
