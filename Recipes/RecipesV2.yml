@@ -138,3 +138,9 @@ recipes:
       minSwiftUIVersion: 1
   - GIFImage:
       minSwiftUIVersion: 1
+  - AppDelegateWithSwiftUILifecycle:
+      minSwiftUIVersion: 2
+  - DetectForegroundBackground:
+      minSwiftUIVersion: 1
+  - ScenePhase:
+      minSwiftUIVersion: 2

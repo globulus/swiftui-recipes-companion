@@ -1,0 +1,26 @@
+---
+title: "Use ScenePhase to Detect Foreground / Background"
+description: "Detect when your SwiftUI app goes to background or comes to foreground by monitoring ScenePhase changes."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+@Environment(\.scenePhase) var scenePhase
+
+var body: some View {
+  VStack {
+    Text("Some content")
+  }
+  .onChange(of: scenePhase) { newPhase in
+    switch newPhase {
+    case .background:
+      print("App went to background")
+    case .active:
+      print("App became active (or came to foreground)")
+    case .inactive:
+      print("App became inactive")
+    @unknown default:
+      print("Well, something certainly happened...")
+    }
+  }
+}

@@ -1,0 +1,36 @@
+---
+title: "Detect Foreground / Background"
+description: "Detect when your SwiftUI app goes to background or comes to foreground."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+extension View {
+  func onAppCameToForeground(perform action: @escaping () -> Void) -> some View {
+    self.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+       action()
+    }
+  }
+    
+  func onAppWentToBackground(perform action: @escaping () -> Void) -> some View {
+    self.onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+      action()
+    }
+  }
+}
+
+/*
+// Sample usage
+
+var body: some View {
+  VStack {
+    Text("Some content")
+  }
+  .onAppCameToForeground {
+    print("App came to foreground")
+  }
+  .onAppWentToBackground {
+    print("App went to background")
+  }
+}
+*/
