@@ -148,3 +148,8 @@ recipes:
       minSwiftUIVersion: 2
   - ImagePicker:
       minSwiftUIVersion: 1
+  - DismissViewProgramatically@1-2:
+      minSwiftUIVersion: 1
+      maxSwiftUIVersion: 2
+  - DismissViewProgramatically@3:
+      minSwiftUIVersion: 3

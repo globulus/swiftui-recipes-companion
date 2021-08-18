@@ -71,3 +71,5 @@ recipes:
   - DetectForegroundBackground
   - ScenePhase
   - ImagePicker
+  - DismissViewProgramatically@1-2
+  - DismissViewProgramatically@3

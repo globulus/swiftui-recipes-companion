@@ -1,0 +1,14 @@
+---
+title: "Dismiss View Programatically (1-2)"
+description: "Dismiss a View Programatically using presentationMode in SwiftUI 1 and 2."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+maxSwiftUIVersion: 2
+---
+struct MyViewController: UIViewControllerRepresentable {
+  @Environment(\.presentationMode) private var presentationMode
+
+  // whenever you want to dismiss it, when something happens, call
+  presentationMode.wrappedValue.dismiss()
+}
