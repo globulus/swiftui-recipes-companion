@@ -23,7 +23,8 @@ recipes:
   - EquallySpacedElementsInHStack
   - EvenlySizedElements
   - DetectDarkMode
-  - DismissKeyboard
+  - DismissKeyboard@1-2
+  - DismissKeyboard@3
   - Slider
   - ActionSheet
   - AlertDialog

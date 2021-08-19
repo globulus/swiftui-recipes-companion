@@ -47,8 +47,11 @@ recipes:
       minSwiftUIVersion: 1
   - DetectDarkMode:
       minSwiftUIVersion: 1
-  - DismissKeyboard:
+  - DismissKeyboard@1-2:
       minSwiftUIVersion: 1
+      maxSwiftUIVersion: 2
+  - DismissKeyboard@3:
+      minSwiftUIVersion: 3
   - Slider:
       minSwiftUIVersion: 1
   - ActionSheet:

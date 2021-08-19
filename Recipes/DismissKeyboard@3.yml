@@ -1,0 +1,64 @@
+---
+title: "Dismiss Keyboard (3)"
+description: "Programatically dismiss keyboard in SwiftUI 3."
+author: "Gordan"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+// For a single view
+struct ContentView: View {
+  @State private var text = ""
+  @FocusState private var isFocused: Bool
+
+  var body: some View {
+    VStack {
+      TextField("Some text", text: $text)
+        .focused($isFocused)
+
+      Button("Unfocus") {
+        isFocused = false
+      }
+    }
+  }
+}
+
+// For multiple views
+struct ContentView: View {
+  @State private var firstName = ""
+  @State private var lastName = ""
+  @State private var phoneNumber = ""
+
+  @FocusState private var focusedField: FormField?
+
+  var body: some View {
+    Form {
+      TextField("First name", text: $firstName)
+        .submitLabel(.next)
+        .focused($focusedField, equals: .firstName)
+
+      TextField("Last name", text: $lastName)
+        .textContentType(.familyName)
+        .submitLabel(.next)
+        .focused($focusedField, equals: .lastName)
+
+      TextField("Phone number", text: $phoneNumber)
+        .textContentType(.telephoneNumber)
+        .submitLabel(.done)
+        .focused($focusedField, equals: .phoneNumber)
+    }
+    .onSubmit {
+      switch focusedField {
+      case .firstName:
+        focusedField = .lastName
+      case .lastName:
+        focusedField = .phoneNumber
+      default:
+        focusedField = nil
+      }
+    }
+  }
+
+  enum FormField {
+    case firstName, lastName, phoneNumber
+  }
+}
