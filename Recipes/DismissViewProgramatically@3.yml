@@ -9,5 +9,5 @@ struct MyViewController: UIViewControllerRepresentable {
   @Environment(\.dismiss) var dismisse
 
   // whenever you want to dismiss it, when something happens, call
-  dismiss
+  dismiss()
 }
