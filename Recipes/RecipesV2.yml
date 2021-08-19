@@ -115,6 +115,7 @@ recipes:
       minSwiftUIVersion: 1
   - SearchBar@1-2:
       minSwiftUIVersion: 1
+      maxSwiftUIVersion: 2
   - SearchBar@3:
       minSwiftUIVersion: 3
   - SpinnerActivityIndicator@1:
