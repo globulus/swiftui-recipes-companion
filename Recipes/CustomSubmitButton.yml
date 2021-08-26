@@ -1,0 +1,29 @@
+---
+title: "Custom Submit Button"
+description: "How to customize the submit button for TextField, SecureField and TextEditor."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/navigate-fields-using-keyboard-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/navigate-fields-using-keyboard-in-swiftui/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+struct ContentView: View {
+  @State private var firstName = ""
+  @State private var lastName = ""
+  @State private var phoneNumber = ""
+
+  var body: some View {
+    Form {
+      TextField("First name", text: $firstName)
+        .submitLabel(.next) // HERE
+
+      TextField("Last name", text: $lastName)
+        .textContentType(.familyName)
+        .submitLabel(.next) // HERE
+
+      TextField("Phone number", text: $phoneNumber)
+        .textContentType(.telephoneNumber)
+        .submitLabel(.done) // HERE
+    }
+  }
+}

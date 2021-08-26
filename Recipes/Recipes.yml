@@ -77,3 +77,4 @@ recipes:
   - LoadRemoteImage@1+
   - LoadRemoteImage@3
   - StyledTabView
+  - CustomSubmitButton

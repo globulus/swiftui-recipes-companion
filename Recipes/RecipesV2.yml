@@ -163,3 +163,5 @@ recipes:
       minSwiftUIVersion: 3
   - StyledTabView:
       minSwiftUIVersion: 1
+  - CustomSubmitButton:
+      minSwiftUIVersion: 3
