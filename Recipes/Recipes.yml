@@ -74,3 +74,6 @@ recipes:
   - ImagePicker
   - DismissViewProgramatically@1-2
   - DismissViewProgramatically@3
+  - LoadRemoteImage@1+
+  - LoadRemoteImage@3
+  - StyledTabView

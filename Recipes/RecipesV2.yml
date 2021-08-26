@@ -157,3 +157,9 @@ recipes:
       maxSwiftUIVersion: 2
   - DismissViewProgramatically@3:
       minSwiftUIVersion: 3
+  - LoadRemoteImage@1+:
+      minSwiftUIVersion: 1
+  - LoadRemoteImage@3:
+      minSwiftUIVersion: 3
+  - StyledTabView:
+      minSwiftUIVersion: 1
