@@ -165,3 +165,11 @@ recipes:
       minSwiftUIVersion: 1
   - CustomSubmitButton:
       minSwiftUIVersion: 3
+  - TextWithHyperlinks@1+:
+      minSwiftUIVersion: 1
+  - TextWithHyperlinks@3:
+      minSwiftUIVersion: 3
+  - Markdown@1+:
+      minSwiftUIVersion: 1
+  - Markdown@3:
+      minSwiftUIVersion: 3

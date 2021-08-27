@@ -78,3 +78,7 @@ recipes:
   - LoadRemoteImage@3
   - StyledTabView
   - CustomSubmitButton
+  - TextWithHyperlinks@1+
+  - TextWithHyperlinks@3
+  - Markdown@1+
+  - Markdown@3

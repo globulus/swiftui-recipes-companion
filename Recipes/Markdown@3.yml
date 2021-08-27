@@ -1,0 +1,11 @@
+---
+title: "Markdown in SwiftUI Text (3)"
+description: "Display markdown in any SwiftUI Text."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/markdown-in-swiftui-text"
+image: "https://swiftuirecipes.com/user/pages/01.blog/markdown-in-swiftui-text/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+// yep, this just works out of the box
+Text("To **learn more**, *please* feel free to visit [SwiftUIRecipes](https://swiftuirecipes.com) for details, or check the `source code` at [Github page](https://github.com/globulus).")

@@ -1,0 +1,11 @@
+---
+title: "Hyperlinks in SwiftUI Text (1)"
+description: "Display text with tappable hyperlinks in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/hyperlinks-in-swiftui-text"
+image: "https://swiftuirecipes.com/user/pages/01.blog/hyperlinks-in-swiftui-text/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+// yep, this just works out of the box
+Text("To **learn more**, *please* feel free to visit [SwiftUIRecipes](https://swiftuirecipes.com) for details, or check the `source code` at [Github page](https://github.com/globulus).")

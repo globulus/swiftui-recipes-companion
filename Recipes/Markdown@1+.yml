@@ -1,0 +1,156 @@
+---
+title: "Markdown in SwiftUI Text (1 and above)"
+description: "Display markdown in any SwiftUI Text."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/hyperlinks-in-swiftui-text"
+image: "https://swiftuirecipes.com/user/pages/01.blog/hyperlinks-in-swiftui-text/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+import SwiftUI
+import SwiftUIFlowLayout
+import MarkdownKit
+
+struct HyperlinkText: View {
+    private let pairs: [StringWithAttributes]
+    
+    init(_ attributedString: NSAttributedString) {
+        pairs = attributedString.stringsWithAttributes
+    }
+    
+    init(markdown: String) {
+        self.init(MarkdownParser().parse(markdown))
+    }
+    
+    init?(html: String) {
+        if let data = html.data(using: .utf8),
+           let attributedString = try? NSAttributedString(data: data,
+                                                          options: [.documentType: NSAttributedString.DocumentType.html],
+                                                          documentAttributes: nil) {
+            self.init(attributedString)
+        } else {
+            return nil
+        }
+    }
+    
+    var body: some View {
+        FlowLayout(mode: .vstack,
+                   binding: .constant(false),
+                   items: pairs,
+                   itemSpacing: 0) { pair in
+            if let link = pair.attrs[.link],
+               let url = link as? URL {
+                Text(pair)
+                    .onTapGesture {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+            } else {
+                Text(pair)
+            }
+        }
+    }
+}
+
+struct StringWithAttributes: Hashable, Identifiable {
+    let id = UUID()
+    let string: String
+    let attrs: [NSAttributedString.Key: Any]
+    
+    static func == (lhs: StringWithAttributes, rhs: StringWithAttributes) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+extension NSAttributedString {
+    var stringsWithAttributes: [StringWithAttributes] {
+        var attributes = [StringWithAttributes]()
+         enumerateAttributes(in: NSRange(location: 0, length: length), options: []) { (attrs, range, _) in
+             let string = attributedSubstring(from: range).string
+            attributes.append(StringWithAttributes(string: string, attrs: attrs))
+         }
+        return attributes
+    }
+}
+
+extension Text {
+    init(_ singleAttribute: StringWithAttributes) {
+        let string = singleAttribute.string
+        let attrs = singleAttribute.attrs
+        var text = Text(string)
+        
+        if let font = attrs[.font] as? UIFont {
+            text = text.font(.init(font))
+        }
+        
+        if let color = attrs[.foregroundColor] as? UIColor {
+            text = text.foregroundColor(Color(color))
+        }
+        
+        if let kern = attrs[.kern] as? CGFloat {
+            text = text.kerning(kern)
+        }
+        
+        if #available(iOS 14.0, *) {
+            if let tracking = attrs[.tracking] as? CGFloat {
+                text = text.tracking(tracking)
+            }
+        }
+        
+        if let strikethroughStyle = attrs[.strikethroughStyle] as? NSNumber, strikethroughStyle != 0 {
+            if let strikethroughColor = (attrs[.strikethroughColor] as? UIColor) {
+                text = text.strikethrough(true, color: Color(strikethroughColor))
+            } else {
+                text = text.strikethrough(true)
+            }
+        }
+        
+        if let underlineStyle = attrs[.underlineStyle] as? NSNumber,
+           underlineStyle != 0 {
+            if let underlineColor = (attrs[.underlineColor] as? UIColor) {
+                text = text.underline(true, color: Color(underlineColor))
+            } else {
+                text = text.underline(true)
+            }
+        }
+        
+        if let baselineOffset = attrs[.baselineOffset] as? NSNumber {
+            text = text.baselineOffset(CGFloat(baselineOffset.floatValue))
+        }
+        
+        self = text
+    }
+    
+    init(_ attributes: [StringWithAttributes]) {
+        self.init("")
+        for singleAttribute in attributes {
+            self = self + Text(singleAttribute)
+        }
+    }
+    
+    init(_ attributedString: NSAttributedString) {
+        self.init(attributedString.stringsWithAttributes)
+    }
+}
+
+/*
+// Sample usage
+
+
+struct HyperlinkTest: View {
+    var body: some View {
+        VStack {
+            HyperlinkText(html: "To <b>learn more</b>, <i>please</i> feel free to visit <a href=\"https://swiftuirecipes.com\">SwiftUIRecipes</a> for details, or check the <code>source code</code> at <a href=\"https://github.com/globulus\">Github page</a>.")
+            HyperlinkText(markdown: "To **learn more**, *please* feel free visit [SwiftUIRecipes](https://swiftuirecipes.com) for details, or check the `source code` at [Github page](https://github.com/globulus).")
+#if compiler(>=5.5)
+            Text("To **learn more**, *please* feel free to visit [SwiftUIRecipes](https://swiftuirecipes.com) for details, or check the `source code` at [Github page](https://github.com/globulus).")
+#endif
+        }.padding()
+    }
+}
+*/
