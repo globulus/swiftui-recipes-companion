@@ -82,3 +82,7 @@ recipes:
   - TextWithHyperlinks@3
   - Markdown@1+
   - Markdown@3
+  - DarkModeCustomUI
+  - DarkModeAdaptiveColor
+  - ListChangeRowPaddingInsets
+  - ListChangeRowHeight

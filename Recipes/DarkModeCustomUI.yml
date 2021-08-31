@@ -1,0 +1,14 @@
+---
+title: "Dark Mode Custom UI"
+description: "Render different UI depending on if the app is in dark mode or not."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/supporting-dark-mode-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/supporting-dark-mode-in-swiftui/preview.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+@Environment(\.colorScheme) var colorScheme: ColorScheme
+
+var body: some View {
+  Text((colorScheme == .dark) ? "Dark theme active" : "Light theme active")
+}

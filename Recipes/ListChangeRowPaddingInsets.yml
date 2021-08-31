@@ -1,0 +1,24 @@
+---
+title: "List Change Row Padding / Insets"
+description: "Change or remove row padding (insets) in SwiftUI List."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-list-change-row-padding-insets"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-list-change-row-padding-insets/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+@State private var top: CGFloat = 0
+@State private var leading: CGFloat = 0
+@State private var bottom: CGFloat = 0
+@State private var trailing: CGFloat = 0
+
+var body: some View {
+  List([Color.red, .green, .blue, .yellow, .orange, .purple,
+        .pink, .black, .brown, .cyan, .gray], id: \.self) { color in
+    color
+      .listRowInsets(EdgeInsets(top: top, // HERE
+                                leading: leading,
+                                bottom: bottom,
+                                trailing: trailing))
+  }
+}

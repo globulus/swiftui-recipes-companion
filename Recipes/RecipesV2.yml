@@ -173,3 +173,11 @@ recipes:
       minSwiftUIVersion: 1
   - Markdown@3:
       minSwiftUIVersion: 3
+  - DarkModeCustomUI:
+      minSwiftUIVersion: 1
+  - DarkModeAdaptiveColor:
+      minSwiftUIVersion: 2
+  - ListChangeRowPaddingInsets:
+      minSwiftUIVersion: 1
+  - ListChangeRowHeight:
+      minSwiftUIVersion: 1

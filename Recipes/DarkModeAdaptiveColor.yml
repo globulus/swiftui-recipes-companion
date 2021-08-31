@@ -1,0 +1,37 @@
+---
+title: "Dark Mode Adaptive Color"
+description: "Color that changes depending on if the app is in dark mode or not."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/supporting-dark-mode-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/supporting-dark-mode-in-swiftui/preview.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+extension UIColor {
+  convenience init(light: UIColor, dark: UIColor) {
+    self.init { traitCollection in
+      switch traitCollection.userInterfaceStyle {
+      case .light, .unspecified:
+        return light
+      case .dark:
+        return dark
+      @unknown default:
+        return light
+      }
+    }
+  }
+}
+
+extension Color {
+  init(light: Color, dark: Color) {
+    self.init(UIColor(light: UIColor(light), dark: UIColor(dark)))
+  }
+}
+
+/*
+// Sample usage
+
+extension Color {
+  static let defaultBackground = Color(light: .white, dark: .black)
+}
+*/
