@@ -1,0 +1,39 @@
+---
+title: "Custom Row Swipe Actions (3)"
+description: "Add custom row swipe actions to a SwiftUI List, supporting multiple custom buttons on either side, as well as full swipe functionality."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-list-custom-row-swipe-actions-all-versions#v3"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-list-custom-row-swipe-actions-all-versions/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+List(1..<20) {
+  Text("List view item at row \($0)")
+    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+      Button {
+        print("Text")
+      } label: {
+        Text("Text")
+      }
+      Button {
+        print("Flag")
+      } label: {
+        Image(systemName: "flag")
+      }
+      .tint(.green)
+    }
+    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+      Button(role: .destructive) {
+       print("Trash")
+      } label: {
+       Label("Delete", systemImage: "trash")
+      }
+      .tint(.red)
+      Button {
+        print("Read")
+      } label: {
+        Label("Read", systemImage: "envelope.open")
+      }
+      .tint(.blue)
+    }
+}

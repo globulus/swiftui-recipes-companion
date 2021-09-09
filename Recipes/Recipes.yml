@@ -86,3 +86,6 @@ recipes:
   - DarkModeAdaptiveColor
   - ListChangeRowPaddingInsets
   - ListChangeRowHeight
+  - DisclosureIndicator
+  - SwipeActions@1+
+  - SwipeActions@3

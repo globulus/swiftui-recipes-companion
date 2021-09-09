@@ -1,6 +1,6 @@
 ---
 title: "Hyperlinks in SwiftUI Text (1 and above)"
-description: "Display text with tappable hyperlinks in SwiftUI, and, in doing so, fully support attributed strings, HTML and Markdown in text views on any SwiftUI version"
+description: "Display text with tappable hyperlinks in SwiftUI, and, in doing so, fully support attributed strings, HTML and Markdown in text views on any SwiftUI version."
 author: "Gordan"
 url: "https://swiftuirecipes.com/blog/hyperlinks-in-swiftui-text"
 image: "https://swiftuirecipes.com/user/pages/01.blog/hyperlinks-in-swiftui-text/preview.gif"
@@ -140,7 +140,6 @@ extension Text {
 
 /*
 // Sample usage
-
 
 struct HyperlinkTest: View {
     var body: some View {

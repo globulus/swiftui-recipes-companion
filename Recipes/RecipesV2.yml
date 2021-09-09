@@ -181,3 +181,9 @@ recipes:
       minSwiftUIVersion: 1
   - ListChangeRowHeight:
       minSwiftUIVersion: 1
+  - DisclosureIndicator:
+      minSwiftUIVersion: 1
+  - SwipeActions@1+:
+      minSwiftUIVersion: 1
+  - SwipeActions@3:
+      minSwiftUIVersion: 3

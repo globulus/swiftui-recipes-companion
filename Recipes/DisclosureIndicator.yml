@@ -1,0 +1,46 @@
+---
+title: "Disclosure Indicator in List."
+description: "Add disclosure indicator to your SwiftUI List rows."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-disclosure-indicator-in-list"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-disclosure-indicator-in-list/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+extension NavigationLink where Label == EmptyView, Destination == EmptyView {
+  static var empty: NavigationLink {
+    self.init(destination: EmptyView(), label: { EmptyView() })
+  }
+}
+
+struct DisclosureIndicatorRow<Label: View>: View {
+  let action: () -> Void
+  @ViewBuilder let label: () -> Label
+
+  var body: some View {
+    Button(action: action, label: {
+      HStack {
+        label()
+        Spacer()
+        NavigationLink.empty
+      }
+    })
+  }
+}
+
+/*
+// Sample usage
+List {
+  Text("Normal row")
+  DisclosureIndicatorRow {
+    print("Tapped")
+  } label: {
+    Text("Disclosure row 1")
+  }
+  DisclosureIndicatorRow {
+    print("Tapped 2")
+  } label: {
+    Label("Disclosure row 2", systemImage: "envelope")
+  }
+}
+*/
