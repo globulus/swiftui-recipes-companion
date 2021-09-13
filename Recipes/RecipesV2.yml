@@ -187,3 +187,5 @@ recipes:
       minSwiftUIVersion: 1
   - SwipeActions@3:
       minSwiftUIVersion: 3
+  - PlayVideo:
+      minSwiftUIVersion: 2

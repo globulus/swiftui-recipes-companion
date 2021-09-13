@@ -1,0 +1,16 @@
+---
+title: "Play Video"
+description: "Play video in your SwiftUI code."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/play-video-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/play-video-in-swiftui/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+import AVKit
+
+let videoURL = Bundle.main.url(forResource: "VideoTest", withExtension: "mov")!
+
+var body: some View {
+  VideoPlayer(player: AVPlayer(url: videoURL))
+}
