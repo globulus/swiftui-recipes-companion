@@ -90,3 +90,4 @@ recipes:
   - SwipeActions@1+
   - SwipeActions@3
   - PlayVideo
+  - ViewVisiblity

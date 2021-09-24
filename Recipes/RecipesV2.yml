@@ -189,3 +189,5 @@ recipes:
       minSwiftUIVersion: 3
   - PlayVideo:
       minSwiftUIVersion: 2
+  - ViewVisibility:
+      minSwiftUIVersion: 1

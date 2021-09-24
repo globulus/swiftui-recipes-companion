@@ -1,0 +1,35 @@
+---
+title: "View Visibility"
+description: "Set visibility of a SwiftUI view. You can show it, hide it, or remove it from the view hierarchy entirely."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/how-to-hide-a-swiftui-view-visible-invisible-gone"
+image: "https://swiftuirecipes.com/user/pages/01.blog/how-to-hide-a-swiftui-view-visible-invisible-gone/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+enum ViewVisibility: CaseIterable {
+  case visible, // view is fully visible
+       invisible, // view is hidden but takes up space
+       gone // view is fully removed from the view hierarchy
+}
+
+extension View {
+  @ViewBuilder func visibility(_ visibility: ViewVisibility) -> some View {
+    if visibility != .gone {
+      if visibility == .visible {
+        self
+      } else {
+        hidden()
+      }
+    }
+  }
+}
+
+/*
+// Sample usage
+
+Text("Some text")
+  .visibility(.invisible)
+Text("Some other text")
+  .visibility(.gone)
+*/
