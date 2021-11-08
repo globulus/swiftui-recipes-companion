@@ -1,0 +1,18 @@
+---
+title: "List Available Fonts"
+description: "List and display all the fonts that are available by default in your iOS/MacOS app"
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/list-available-fonts-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/list-available-fonts-in-swiftui/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+let allFontNames = UIFont.familyNames
+  .flatMap { UIFont.fontNames(forFamilyName: $0) }
+
+var body: some View {
+  List(allFontNames, id: \.self) { name in
+    Text(name)
+      .font(Font.custom(name, size: 12))
+  }
+}

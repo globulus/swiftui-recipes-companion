@@ -1,0 +1,29 @@
+---
+title: "Justify Text"
+description: "Render justified text in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/justify-text-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/justify-text-in-swiftui/preview.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct JustifiedText: UIViewRepresentable {
+  private let text: String
+  private let font: UIFont
+
+  init(_ text: String, font: UIFont = .systemFont(ofSize: 18)) {
+    self.text = text
+    self.font = font
+  }
+
+  func makeUIView(context: Context) -> UITextView {
+    let textView = UITextView()
+    textView.font = font
+    textView.textAlignment = .justified
+    return textView
+  }
+
+  func updateUIView(_ uiView: UITextView, context: Context) {
+    uiView.text = text
+  }
+}

@@ -1,0 +1,13 @@
+---
+title: "UIFont to Font"
+description: "Converting UIFont to Font."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/converting-between-uifont-and-swiftui-font"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+public extension Font {
+  init(uiFont: UIFont) {
+    self = Font(uiFont as CTFont)
+  }
+}

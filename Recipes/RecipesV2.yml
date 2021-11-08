@@ -191,3 +191,19 @@ recipes:
       minSwiftUIVersion: 2
   - ViewVisibility:
       minSwiftUIVersion: 1
+  - ListWithAlternatingRowColor:
+      minSwiftUIVersion: 1
+  - HexColor:
+      minSwiftUIVersion: 1
+  - UIFontToFont:
+      minSwiftUIVersion: 1
+  - ListAvailableFonts:
+      minSwiftUIVersion: 1
+  - JustifyText:
+      minSwiftUIVersion: 1
+  - ZoomImage:
+      minSwiftUIVersion: 1
+  - PlayYouTubeVideo:
+      minSwiftUIVersion: 1
+  - StylingRefreshableListProgressIndicator:
+      minSwiftUIVersion: 3

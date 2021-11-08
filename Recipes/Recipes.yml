@@ -91,3 +91,11 @@ recipes:
   - SwipeActions@3
   - PlayVideo
   - ViewVisiblity
+  - ListWithAlternatingRowColor
+  - HexColor
+  - UIFontToFont
+  - ListAvailableFonts
+  - JustifyText
+  - ZoomImage
+  - PlayYouTubeVideo
+  - StylingRefreshableListProgressIndicator

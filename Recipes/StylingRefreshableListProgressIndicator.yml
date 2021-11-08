@@ -1,0 +1,18 @@
+---
+title: "Styling Refreshable List Progress Indicator"
+description: "How to style the progress indicator while using the refreshable on SwiftUI List."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/styling-refreshable-list-progress-indicator-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/styling-refreshable-list-progress-indicator-in-swiftui/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 3
+---
+List(1..<20) {
+  Text("\($0)")
+}.refreshable {
+  await Task.sleep(2_000_000_000)
+}.onAppear {
+  UIRefreshControl.appearance().tintColor = UIColor.red
+  UIRefreshControl.appearance().backgroundColor = .green.withAlphaComponent(0.5)
+  UIRefreshControl.appearance().attributedTitle = try? NSAttributedString(markdown: "**Some** cool *title*")
+}

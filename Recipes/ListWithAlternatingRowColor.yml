@@ -1,0 +1,35 @@
+---
+title: "List with Alternating Row Color"
+description: "List with Alternating Row Color."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-list-with-alternate-row-color"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-list-with-alternate-row-color/preview_list.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct AlternatingRowsList<Data, Row: View>: View {
+  let data: [Data]
+  let firstColor: Color
+  let secondColor: Color
+  let viewMapping: (Data) -> Row
+
+  init(_ data: [Data],
+       firstColor: Color = .white,
+       secondColor: Color = .gray.opacity(0.4),
+       @ViewBuilder viewMapping: @escaping (Data) -> Row) {
+    self.data = data
+    self.firstColor = firstColor
+    self.secondColor = secondColor
+    self.viewMapping = viewMapping
+  }
+
+  var body: some View {
+    let rowCount = data.count
+    return List {
+      ForEach(0..<rowCount) { index in
+        viewMapping(data[index])
+          .listRowBackground((index % 2 == 0) ? firstColor : secondColor)
+      }
+    }
+  }
+}
