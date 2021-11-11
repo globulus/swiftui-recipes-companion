@@ -207,3 +207,5 @@ recipes:
       minSwiftUIVersion: 1
   - StylingRefreshableListProgressIndicator:
       minSwiftUIVersion: 3
+  - FloatingActionButton:
+      minSwiftUIVersion: 1

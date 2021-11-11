@@ -1,0 +1,68 @@
+---
+title: "Floating Action Button"
+description: "Implement a Floating Action Button (FAB) in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/floating-action-button-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/floating-action-button-in-swiftui/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct FloatingActionButton<ImageView: View>: ViewModifier {
+  let color: Color // background color of the FAB
+  let image: ImageView // image shown in the FAB
+  let action: () -> Void
+
+  private let size: CGFloat = 60 // size of the FAB circle
+  private let margin: CGFloat = 15 // distance from screen edges
+
+  func body(content: Content) -> some View {
+    GeometryReader { geo in
+      ZStack {
+        Color.clear // allows the ZStack to fill the entire screen
+        content
+        button(geo)
+      }
+    }
+  }
+
+  @ViewBuilder private func button(_ geo: GeometryProxy) -> some View {
+    image
+      .imageScale(.large)
+      .frame(width: size, height: size)
+      .background(Circle().fill(color))
+      .shadow(color: .gray, radius: 2, x: 1, y: 1)
+      .onTapGesture(perform: action)
+      .offset(x: (geo.size.width - size) / 2 - margin,
+              y: (geo.size.height - size) / 2 - margin)
+  }
+}
+
+extension View {
+  func floatingActionButton<ImageView: View>(
+    color: Color,
+    image: ImageView,
+    action: @escaping () -> Void) -> some View {
+    self.modifier(FloatingActionButton(color: color,
+                                       image: image,
+                                       action: action))
+  }
+}
+
+/*
+Sample usage
+
+private struct FABTest: View {
+  @State private var noRows = 9
+
+  var body: some View {
+    List(Array(1...noRows), id: \.self) { index in
+      Text("Row \(index)")
+    }
+    .floatingActionButton(color: .blue,
+                          image: Image(systemName: "plus")
+                            .foregroundColor(.white)) {
+      noRows += 1
+    }
+  }
+}
+*/

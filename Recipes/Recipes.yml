@@ -99,3 +99,4 @@ recipes:
   - ZoomImage
   - PlayYouTubeVideo
   - StylingRefreshableListProgressIndicator
+  - FloatingActionButton
