@@ -1,0 +1,47 @@
+---
+title: "Presenting Multiple Sheets / Full Screen Covers in SwiftUI"
+description: "Present multiple sheets or full screen covers on a single view in SwiftUI."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/presenting-multiple-sheets-full-screen-covers-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/presenting-multiple-sheets-full-screen-covers-in-swiftui/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+enum Screen: Identifiable, CaseIterable {
+  case red, blue, green
+
+  var id: Self {
+    self
+  }
+
+  var color: Color {
+    switch self {
+    case .red:
+      return .red
+    case .blue:
+      return .blue
+    case .green:
+      return .green
+    }
+  }
+}
+
+struct PopoverTest: View {
+  @State private var screen: Screen?
+
+  var body: some View {
+    Button("Random color") {
+      screen = Screen.allCases.randomElement() // show the popover
+    }
+    .fullScreenCover(item: $screen, onDismiss: nil) { currentScreen in
+      ZStack {
+        Rectangle()
+          .foregroundColor(currentScreen.color)
+        Button("Reset") {
+          self.screen = nil // hide the popover again
+        }
+        .foregroundColor(.white)
+      }
+    }
+  }
+}

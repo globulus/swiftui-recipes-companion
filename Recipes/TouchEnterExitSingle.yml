@@ -1,0 +1,96 @@
+---
+title: "SwiftUI Touch Enter and Exit Gesture - Single View"
+description: "Detect when touch enters or exits your view."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-touch-enter-and-exit-gesture"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-touch-enter-and-exit-gesture/preview_single.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct TouchEnterExit: ViewModifier {
+  @GestureState private var dragLocation: CGPoint = .zero
+  @State private var didEnter = false
+
+  let onEnter: (() -> Void)?
+  let onExit: (() -> Void)?
+
+  func body(content: Content) -> some View {
+    content
+      .gesture(
+        DragGesture(minimumDistance: 0, coordinateSpace: .global)
+          .updating($dragLocation) { value, state, _ in
+            state = value.location
+          }
+      )
+      .background(GeometryReader { geo in
+        dragObserver(geo)
+      })
+  }
+
+  private func dragObserver(_ geo: GeometryProxy) -> some View {
+    if geo.frame(in: .global).contains(dragLocation) {
+      DispatchQueue.main.async {
+        didEnter = true
+        onEnter?()
+      }
+    } else if didEnter {
+      DispatchQueue.main.async {
+        didEnter = false
+        onExit?()
+      }
+    }
+    return Color.clear
+  }
+}
+
+extension View {
+  func touchEnterExit(onEnter: (() -> Void)? = nil,
+                      onExit: (() -> Void)? = nil) -> some View {
+    self.modifier(TouchEnterExit(onEnter: onEnter, onExit: onExit))
+  }
+}
+
+/*
+Sample usage
+
+// A simple rect that tracks if the touch is currently inside it
+// and adjusts its label and outline accordingly
+struct AwareRect: View {
+  @State private var text = "Default"
+  @State private var isInside = false
+
+  let id: Int
+  let color: Color
+
+  var body: some View {
+    ZStack {
+      color
+      if isInside {
+        Rectangle()
+          .stroke(Color.black, lineWidth: 10)
+      }
+      Text(text)
+    }
+    .frame(width: 150, height: 150)
+    .touchEnterExit {
+      text = "Entered \(id)"
+      isInside = true
+    } onExit: {
+      text = "Exited \(id)"
+      isInside = false
+    }
+  }
+}
+
+struct TouchEnterTouchExitTest: View {
+  private let colors = [Color.red, .blue, .green, .orange]
+
+  var body: some View {
+    HStack {
+      ForEach(0..<4) { i in
+        AwareRect(id: i, color: colors[i])
+      }
+    }
+  }
+}
+*/

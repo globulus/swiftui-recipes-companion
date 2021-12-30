@@ -1,0 +1,137 @@
+---
+title: "Weighted Layout (HStack and VStack)"
+description: "Add weights to HStack and VStack elements, so that you can easily size them relative to each other."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/weighted-layout-hstack-and-vstack-in-swiftui"
+image: "https://swiftuirecipes.com/user/pages/01.blog/weighted-layout-hstack-and-vstack-in-swiftui/preview.png"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+class WeightedProxy {
+  let kind: Kind // differentiates between HStack and VStack
+  var geo: GeometryProxy? = nil // wrapped GeometryProxy
+  private(set) var totalWeight: CGFloat = 0
+
+  init(kind: Kind) {
+    self.kind = kind
+  }
+
+  func register(with weight: CGFloat) {
+    totalWeight += weight
+  }
+
+  func dimensionForRelative(weight: CGFloat) -> CGFloat {
+    guard let geo = geo,
+          totalWeight > 0
+    else {
+      return 0
+    }
+    let dimension = (kind == .vertical) ? geo.size.height : geo.size.width
+    return dimension * weight / totalWeight
+  }
+
+  enum Kind {
+    case vertical, horizontal
+  }
+}
+
+struct Weighted: ViewModifier {
+  private let weight: CGFloat
+  private let proxy: WeightedProxy
+
+  init(_ weight: CGFloat, proxy: WeightedProxy) {
+    self.weight = weight
+    self.proxy = proxy
+    proxy.register(with: weight)
+  }
+
+  @ViewBuilder func body(content: Content) -> some View {
+    if proxy.kind == .vertical {
+      content.frame(height: proxy.dimensionForRelative(weight: weight))
+    } else {
+      content.frame(width: proxy.dimensionForRelative(weight: weight))
+    }
+  }
+}
+
+extension View {
+  func weighted(_ weight: CGFloat, proxy: WeightedProxy) -> some View {
+    self.modifier(Weighted(weight, proxy: proxy))
+  }
+}
+
+struct WeightedHStack<Content>: View where Content : View {
+  private let proxy = WeightedProxy(kind: .horizontal)
+  @State private var initialized = false
+  @ViewBuilder let content: (WeightedProxy) -> Content
+
+  var body: some View {
+    GeometryReader { geo in
+      HStack(spacing: 0) {
+        if initialized {
+          content(proxy)
+        } else {
+          Color.clear.onAppear {
+            proxy.geo = geo
+            initialized.toggle()
+          }
+        }
+      }
+    }
+  }
+}
+
+struct WeightedVStack<Content>: View where Content : View {
+  private let proxy = WeightedProxy(kind: .vertical)
+  @State private var initialized = false
+  @ViewBuilder let content: (WeightedProxy) -> Content
+
+  var body: some View {
+    GeometryReader { geo in
+      VStack(spacing: 0) {
+        if initialized {
+          content(proxy)
+        } else {
+          Color.clear.onAppear {
+            proxy.geo = geo
+            initialized.toggle()
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+Sample usage
+
+WeightedVStack { proxy in
+  Text("20%")
+    .frame(minWidth: 0, maxWidth: .infinity)
+    .weighted(2, proxy: proxy)
+    .background(Color.green)
+  Text("50%")
+    .frame(minWidth: 0, maxWidth: .infinity)
+    .weighted(5, proxy: proxy)
+    .background(Color.red)
+  Text("30%")
+    .weighted(3, proxy: proxy)
+    .background(Color.cyan)
+}
+.padding()
+.foregroundColor(.white)
+
+WeightedHStack { proxy in
+  Text("50%")
+    .weighted(5, proxy: proxy)
+    .background(Color.blue)
+  Text("20%")
+    .weighted(2, proxy: proxy)
+    .background(Color.green)
+  Text("30%")
+    .weighted(3, proxy: proxy)
+    .background(Color.red)
+}
+.padding()
+.foregroundColor(.white)
+*/

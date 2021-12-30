@@ -209,3 +209,22 @@ recipes:
       minSwiftUIVersion: 3
   - FloatingActionButton:
       minSwiftUIVersion: 1
+  - RadialMenu:
+      minSwiftUIVersion: 1
+  - TimelineList:
+      minSwiftUIVersion: 1
+  - MultipleSheetsFullScreenCovers:
+      minSwiftUIVersion: 1
+  - FullScreenCoverAnyVersion:
+      minSwiftUIVersion: 1
+  - NavigationBarTitleCustomView:
+      minSwiftUIVersion: 2
+  - ListSectionIndex:
+      minSwiftUIVersion: 1
+  - TouchEnterExitSingle:
+      minSwiftUIVersion: 1
+  - TouchEnterExitGroup:
+      minSwiftUIVersion: 1
+  - WeightedVStackHStack:
+      minSwiftUIVersion: 1
+

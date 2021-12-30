@@ -1,0 +1,65 @@
+---
+title: "SwiftUI Full Screen Cover on iOS 13"
+description: "Use fullScreenCover on iOS 13 (or any SwiftUI version, for that matter)."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-full-screen-cover-on-ios-13"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-full-screen-cover-on-ios-13/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 1
+---
+struct FullScreenCoverCompat<CoverContent: View>: ViewModifier {
+  @Binding var isPresented: Bool
+  let content: () -> CoverContent
+
+  func body(content: Content) -> some View {
+    GeometryReader { geo in
+      ZStack {
+        // this color makes sure that its enclosing ZStack
+        // (and the GeometryReader) fill the entire screen,
+        // allowing to know its full height
+        Color.clear
+        content
+        ZStack {
+          // the color is here for the cover to fill
+          // the entire screen regardless of its content
+          Color.white
+          self.content()
+        }
+        .offset(y: isPresented ? 0 : geo.size.height)
+        // feel free to play around with the animation speeds!
+        .animation(.spring())
+      }
+    }
+  }
+}
+
+extension View {
+  func fullScreenCoverCompat<Content: View>(isPresented: Binding<Bool>,
+                                            content: @escaping () -> Content) -> some View {
+    self.modifier(FullScreenCoverCompat(isPresented: isPresented,
+                                        content: content))
+  }
+}
+
+/*
+Sample usage
+
+struct FullScreenCoverCompatTest: View {
+  @State private var isPresented = false
+
+  var body: some View {
+    Button("Show me") {
+      isPresented = true
+    }
+    .fullScreenCoverCompat(isPresented: $isPresented) {
+      ZStack {
+        Color.green
+        Button("Hide") {
+          isPresented = false
+        }
+        .foregroundColor(.white)
+      }
+    }
+  }
+}
+*/

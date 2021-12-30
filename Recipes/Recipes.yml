@@ -100,3 +100,12 @@ recipes:
   - PlayYouTubeVideo
   - StylingRefreshableListProgressIndicator
   - FloatingActionButton
+  - RadialMenu
+  - TimelineList
+  - MultipleSheetsFullScreenCovers
+  - FullScreenCoverAnyVersion
+  - NavigationBarTitleCustomView
+  - ListSectionIndex
+  - TouchEnterExitSingle
+  - TouchEnterExitGroup
+  - WeightedVStackHStack

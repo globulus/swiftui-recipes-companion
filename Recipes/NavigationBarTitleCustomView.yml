@@ -1,0 +1,43 @@
+---
+title: "Navigation Bar Title Custom View"
+description: "Put any custom view in a navigation bar, replacing the default navigation bar title text."
+author: "Gordan"
+url: "https://swiftuirecipes.com/blog/swiftui-navigation-bar-title-custom-view"
+image: "https://swiftuirecipes.com/user/pages/01.blog/swiftui-navigation-bar-title-custom-view/preview.gif"
+updatedAt: "2021-07-28T13:00:00"
+minSwiftUIVersion: 2
+---
+extension View {
+  func navigationBarTitle<Content>(
+    @ViewBuilder content: () -> Content
+  ) -> some View where Content : View {
+    self.toolbar {
+      ToolbarItem(placement: .principal, content: content)
+    }
+  }
+}
+
+/*
+Sample usage
+
+NavigationView {
+  List {
+    ForEach(1..<50) {
+      Text("\($0)")
+    }
+  }
+  .navigationBarTitle { // HERE
+    Button(action: {
+      // do something
+    }) {
+      HStack {
+        Image(systemName: "ellipsis.circle")
+          .resizable()
+          .frame(width: 32, height: 32)
+        Text("SwiftUIRecipes.com")
+          .foregroundColor(.purple)        
+      }
+    }
+  }
+}
+*/
